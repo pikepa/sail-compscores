@@ -20,7 +20,7 @@ test('The Dashboard shows Log Out', function(){
 
 test('The Dashboard shows User Profile', function(){
 
-    $this->get('/dashboard')->assertSee('User Profile');
+    $this->get('/dashboard')->assertSee('Profile');
 });
 
 test('The Dashboard shows the the Application Name', function(){

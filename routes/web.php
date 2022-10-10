@@ -1,17 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Livewire\Results\ManageResults;
+use App\Http\Livewire\Organisation\ManageOrganisations;
 
 Route::get('/', function () {
     return view('pages.welcome');
@@ -24,5 +15,11 @@ Route::get('/profile', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/organisation', ManageOrganisations::class)->name('organisation');
+Route::get('/results', ManageResults::class)->name('results');
+
+
+
 
 require __DIR__.'/auth.php';
