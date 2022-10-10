@@ -19,10 +19,10 @@ class OrganisationFactory extends Factory
     {
         return [
               'name' => fake()->company(),
-              'contact_name' =>fake()->fullname(),
-              'contact_email' =>fake()->safemail(),
+              'contact_name' =>fake()->name(),
+              'contact_email' =>fake()->safeEmail(),
               'contact_phone' =>fake()->phoneNumber(),
-              'owner_id' => User::factory()->create(),
+              'owner_id' => User::where('id', '>', 2)->get()->random()->id,
         ];
     }
 }

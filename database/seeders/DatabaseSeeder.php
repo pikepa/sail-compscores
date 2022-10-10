@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,26 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Peter Pike',
-            'email' => 'pikepeter@gmail.com',
-            'password'=> bcrypt('password')
-        ]);
-
-        User::factory()->create([
-            'name' => 'Amy Lee',
-            'email' => 'amylee@gmail.com',
-            'password'=> bcrypt('password')
+        // Set up Roles and Permissions
+        $this->call([
+            RolesAndPermissionSeeder::class,
         ]);
         
-        Role::create([
-            'name' => 'SuperAdmin',
-        ]);
 
-        Role::create([
-            'name' => 'ClientOwner',
+        
+        //Create organisation and other Seeds
+        $this->call([
+            UserSeeder::class,
+            OrganisationSeeder::class
         ]);
     }
 }
