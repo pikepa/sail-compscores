@@ -19,9 +19,11 @@ test('An authorised user can view their Organisations', function () {
 });
 
 test('A SuperAdmin user can view any Organisation', function () { 
-
+    // Create role of it does not exist
+    $role=Role::firstOrCreate(['name' =>'SuperAdmin', 'guard_name'=>'web']);
+    
     // Create SuperAdmin user
-    $user = User::factory()->create()->assignRole('SuperAdmin');
+    $user = User::factory()->create()->assignRole($role);
 
     // Create Multiple Random Organisation
     $org= Organisation::factory()->create();
