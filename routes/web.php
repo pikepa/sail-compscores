@@ -6,10 +6,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.welcome');
-})->name('welcome');
+    })->name('welcome');
 Route::get('/profile', function () {
     return view('pages.profile');
-})->name('profile');
+    })->name('profile');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/organisation', ManageOrganisations::class)->name('organisation');
