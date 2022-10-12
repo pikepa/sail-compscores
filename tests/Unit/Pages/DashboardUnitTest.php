@@ -8,24 +8,17 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-
-test('The Dashboard shows the Users Name', function(){
-
+test('The Dashboard shows the Users Name', function () {
     $this->get('/dashboard')->assertSee($this->user->name);
 });
-test('The Dashboard shows Log Out', function(){
-
+test('The Dashboard shows Log Out', function () {
     $this->get('/dashboard')->assertSee('Log Out');
 });
 
-test('The Dashboard shows User Profile', function(){
-
+test('The Dashboard shows User Profile', function () {
     $this->get('/dashboard')->assertSee('Profile');
 });
 
-test('The Dashboard shows the the Application Name', function(){
-
+test('The Dashboard shows the the Application Name', function () {
     $this->get('/dashboard')->assertSee('CompScores | Dashboard');
-}); 
-
- 
+});

@@ -1,9 +1,10 @@
 <?php
 
 namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesAndPermissionSeeder extends Seeder
 {
@@ -27,7 +28,6 @@ class RolesAndPermissionSeeder extends Seeder
 
         // or may be done by chaining
         $role = Role::create(['name' => 'ClientOwner'])
-            ->givePermissionTo(['read-org','update-org', 'publish-org']);
-
+            ->givePermissionTo(['read-org', 'update-org', 'publish-org']);
     }
 }

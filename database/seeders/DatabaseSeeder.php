@@ -18,13 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolesAndPermissionSeeder::class,
         ]);
-        
 
-        
         //Create organisation and other Seeds
         $this->call([
             UserSeeder::class,
-            OrganisationSeeder::class
+            OrganisationSeeder::class,
         ]);
     }
 }
