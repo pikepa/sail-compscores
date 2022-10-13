@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Organisation;
 
 use App\Models\Organisation;
 use Illuminate\Support\Facades\Auth;
+use LDAP\Result;
 use Livewire\Component;
 
 class ManageOrganisations extends Component
@@ -12,7 +13,7 @@ class ManageOrganisations extends Component
 
     public $displayForm = false;
 
-    protected $listeners = ['displayForm'];
+    protected $listeners = ['toggleForm'];
 
     public function render()
     {
@@ -25,7 +26,23 @@ class ManageOrganisations extends Component
         return view('livewire.organisation.manage-organisations');
     }
 
-    public function displayForm()
+    public function editOrg($id)
+    {   
+        abort_unless(Auth::check() && Auth::user()->can('update-org'), '403', 'Unauthorised');
+            $this->emit('editOrg', $id);
+            $this->toggleform();
+    }
+
+
+    public function deleteOrg($id)
+    {   
+        abort_unless(Auth::check() && Auth::user()->can('delete-org'), '403', 'Unauthorised');
+
+            Organisation::find($id)->delete();
+       
+    }
+
+    public function toggleForm()
     {
         $this->displayForm = ! $this->displayForm;
     }

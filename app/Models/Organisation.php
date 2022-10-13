@@ -9,11 +9,5 @@ class Organisation extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'owner_id',
-        'contact_name',
-        'contact_email',
-        'contact_phone',
-    ];
+    protected $guarded = [];
 }

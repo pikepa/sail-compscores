@@ -27,7 +27,10 @@
                 <x-login-link email="pikepeter@gmail.com" />
             </div>
             <div class="flex justify-center">
-                <x-login-link email="amylee@gmail.com" label='Normal User' />
+                <x-login-link email="clientadmin@gmail.com" label='Client Admin' />
+            </div>
+            <div class="flex justify-center">
+                <x-login-link email="compmanager@gmail.com" label='Comp Manager' />
             </div>
             @endenv
         </div>

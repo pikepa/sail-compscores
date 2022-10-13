@@ -22,15 +22,21 @@ class UserSeeder extends Seeder
         ])->assignRole('SuperAdmin');
 
         User::factory()->create([
-            'name' => 'Amy Lee',
-            'email' => 'amylee@gmail.com',
+            'name' => 'Client Admin',
+            'email' => 'clientadmin@gmail.com',
             'password' => bcrypt('password'),
-        ])->assignRole('ClientOwner');
+        ])->assignRole('ClientAdmin');
+
+        User::factory()->create([
+            'name' => 'Competition Manager',
+            'email' => 'compmanager@gmail.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('CompManager');
 
         //Create Random users
         User::factory()->count(5)
         ->create()->each(function ($user) {
-            $user->assignRole('ClientOwner');
+            $user->assignRole('ClientAdmin');
         });
     }
 }
