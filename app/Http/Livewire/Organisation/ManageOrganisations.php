@@ -28,15 +28,17 @@ class ManageOrganisations extends Component
 
     public function editOrg($id)
     {   
-        abort_unless(Auth::check() && Auth::user()->can('update-org'), '403', 'Unauthorised');
-            $this->emit('editOrg', $id);
-            $this->toggleform();
+        $this->checkAuthority('update-org');
+   
+        $this->emit('editOrg', $id);
+    
+        $this->toggleform();
     }
 
 
     public function deleteOrg($id)
     {   
-        abort_unless(Auth::check() && Auth::user()->can('delete-org'), '403', 'Unauthorised');
+        $this->checkAuthority('delete-org');
 
             Organisation::find($id)->delete();
        
@@ -46,4 +48,13 @@ class ManageOrganisations extends Component
     {
         $this->displayForm = ! $this->displayForm;
     }
+
+
+    //Validate User is signedin and has valid Permission
+    private function checkAuthority($permission)
+    {
+        abort_unless(Auth::check() && Auth::user()->can($permission), '403', 'Unauthorised');
+    }
+
+
 }

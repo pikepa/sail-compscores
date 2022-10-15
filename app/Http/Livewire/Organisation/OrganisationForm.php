@@ -19,17 +19,18 @@ class OrganisationForm extends Component
     protected $listeners = ['editOrg'];
 
     protected $rules = [
-        'name' => 'required|min:6',
-        'contact_name' => 'required|min:6',
+        'name' => 'required|min:6|max:30',
+        'contact_name' => 'required|min:6|Max:30',
         'contact_email' => 'required|email',
         'contact_phone' => 'required',
-        'owner_id' => 'required',
+        'owner_id' => 'required|integer',
     ];
 
 
     public function mount()
     {
         $this->owner_id = Auth::user()->id;
+
     }
 
     public function render()
@@ -39,10 +40,11 @@ class OrganisationForm extends Component
 
     public function editOrg($id)
     {
+        $this->checkAuthority('update-org');
+
         $this->edit=true;
-
+        
         $org = Organisation::find($id);
-
         $this->org_id = $id;
         $this->name = $org->name;
         $this->contact_name = $org->contact_name;
@@ -55,18 +57,28 @@ class OrganisationForm extends Component
     {
         $validatedData = $this->validate();
 
-        // Execution doesn't reach here if validation fails.
+        $this->checkAuthority('create-org');
+
         Organisation::create($validatedData);
         $this->emitUp('toggleForm');
     }
+
+
     public function updateOrg($id)
 
     {
         $validatedData = $this->validate();
 
-        // Execution doesn't reach here if validation fails.
+        $this->checkAuthority('update-org');
+
         Organisation::find($id)->update($validatedData);
 
         $this->emitUp('toggleForm');
+    }
+
+    //Validate User is signedin and has valid Permission
+    private function checkAuthority($permission)
+    {
+        abort_unless(Auth::check() && Auth::user()->can($permission), '403', 'Unauthorised');
     }
 }

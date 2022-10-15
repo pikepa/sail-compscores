@@ -1,8 +1,18 @@
 <?php
 
-use App\Models\Organisation;
 use App\Models\User;
+use Livewire\Livewire;
+use App\Models\Organisation;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
+beforeEach(function () {
+    // Create role if it does not exist
+    Role::firstOrCreate(['name' => 'SuperAdmin', 'guard_name' => 'web']);
+    Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
+});
+
 
 test('An authorised user can view their Organisations', function () {
     $user = User::factory()->create();
@@ -17,22 +27,20 @@ test('An authorised user can view their Organisations', function () {
 });
 
 test('A SuperAdmin user can view any Organisation', function () {
-    // Create role of it does not exist
-    $role = Role::firstOrCreate(['name' => 'SuperAdmin', 'guard_name' => 'web']);
-
+ 
     // Create SuperAdmin user
-    $user = User::factory()->create()->assignRole($role);
+    $user = User::factory()->create()->assignRole('SuperAdmin');
 
     // Create Multiple Random Organisation
     $org = Organisation::factory()->create();
 
-    $this->actingAs($user)->get('/organisation')->assertOk()
-    ->assertSee('All Organisations')
-    ->assertSee('Edit');
+    $this->actingAs($user);
 
-    $this->assertfalse($user->id == $org->owner_id);
+    $this->get('/organisation')->assertOk()
+    ->assertSee('All Organisations')
+    ->assertSee('Add New')
+    ->assertSee($org->contact_name)
+    ->assertSee($org->contact_email);
+    $this->assertFalse($user->id == $org->owner_id);
 });
 
-test('An Organisation has many competitions', function () {
-    //expect()->
-})->skip();

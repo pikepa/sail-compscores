@@ -22,7 +22,7 @@ class OrganisationFactory extends Factory
             'contact_name' => fake()->name(),
             'contact_email' => fake()->safeEmail(),
             'contact_phone' => fake()->phoneNumber(),
-            'owner_id' => User::where('id', '>', 2)->get()->random()->id,
+            'owner_id' => User::factory()->create()->id,
         ];
     }
 }

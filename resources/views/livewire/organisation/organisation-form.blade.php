@@ -34,11 +34,16 @@
                 placeholder="Enter the primary contact's Phone"></x-text-input>
             <x-input-error :messages="$errors->get('contact_phone')"></x-input-error>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center space-x-8">
+            <button wire:click="$emitUp('toggleForm')"
+            class="mt-6  items-center rounded-md border border-transparent bg-yellow-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            Cancel
+            </button>
             <button type="submit"
                 class="mt-6  items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 Submit
             </button>
+
         </div>
     </div>
 </form>
