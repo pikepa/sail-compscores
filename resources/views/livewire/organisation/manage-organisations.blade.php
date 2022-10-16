@@ -5,8 +5,8 @@
 
         <div class="max-w-4xl mx-auto">
             <!-- page Header -->
-            <div class="-ml-8 mt-4 sm:flex sm:items-center">
-                <div class="sm:flex-row">
+            <div class="-ml-8 mt-4 sm:flex sm:items-center justify-between">
+                <div class="sm:flex-row ">
                     @role('SuperAdmin')
                     <h1 class="text-3xl font-semibold text-indigo-700">All Organisations</h1>
                     @else
@@ -16,7 +16,9 @@
                         their
                         name and contact details.</p>
                 </div>
+                    <x-displayMessage />
             </div>
+
 
             @if($orgs->count())
             <div class="mt-4 flex flex-col">
@@ -100,3 +102,7 @@
     </div>
     @endif
 </div>
+
+<!-- <script>
+    $('div.alert').delay(5000).slideUp(300);
+</script> -->

@@ -2,18 +2,23 @@
 
 namespace App\Http\Livewire\Organisation;
 
-use App\Models\Organisation;
-use Illuminate\Support\Facades\Auth;
 use LDAP\Result;
 use Livewire\Component;
+use App\Models\Organisation;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ManageOrganisations extends Component
 {
     public $orgs;
 
+    public $displayMessage = false;
     public $displayForm = false;
 
-    protected $listeners = ['toggleForm'];
+    protected $listeners = [
+        'toggleForm', 
+        'toggleMessage', 
+    ];
 
     public function render()
     {
@@ -31,7 +36,7 @@ class ManageOrganisations extends Component
         $this->checkAuthority('update-org');
    
         $this->emit('editOrg', $id);
-    
+
         $this->toggleform();
     }
 
@@ -41,12 +46,21 @@ class ManageOrganisations extends Component
         $this->checkAuthority('delete-org');
 
             Organisation::find($id)->delete();
-       
+
+            $this->emitSelf('toggleMessage');
+
+        Session::put('message', 'Organisation successfully deleted.');
+
     }
 
     public function toggleForm()
     {
         $this->displayForm = ! $this->displayForm;
+    }
+
+    public function toggleMessage()
+    {
+        $this->displayMessage = ! $this->displayMessage;
     }
 
 

@@ -9,6 +9,7 @@
         <h1>Edit Organisation</h1>
     </div>
 @endif
+
     <div class=" mt-4 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
         <div>
             <x-input-label class="text-indigo-700 mt-2 font-bold">Organisation Name</x-input-label>

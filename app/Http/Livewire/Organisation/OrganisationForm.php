@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Organisation;
 use Livewire\Component;
 use App\Models\Organisation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class OrganisationForm extends Component
 {
@@ -22,7 +23,7 @@ class OrganisationForm extends Component
         'name' => 'required|min:6|max:30',
         'contact_name' => 'required|min:6|Max:30',
         'contact_email' => 'required|email',
-        'contact_phone' => 'required',
+        'contact_phone' => 'required|starts_with:+|min:13|max:16',
         'owner_id' => 'required|integer',
     ];
 
@@ -60,7 +61,12 @@ class OrganisationForm extends Component
         $this->checkAuthority('create-org');
 
         Organisation::create($validatedData);
+
+        Session::put('message', 'Organisation successfully created.');
+        $this->emitUp('toggleMessage');
+
         $this->emitUp('toggleForm');
+
     }
 
 
@@ -74,6 +80,10 @@ class OrganisationForm extends Component
         Organisation::find($id)->update($validatedData);
 
         $this->emitUp('toggleForm');
+        $this->emitUp('toggleMessage');
+
+        Session::put('message', 'Organisation successfully updated.');
+
     }
 
     //Validate User is signedin and has valid Permission
