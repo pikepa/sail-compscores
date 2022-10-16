@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class ManageOrganisations extends Component
 {
-    public $orgs;
 
     public $displayMessage = false;
     public $displayForm = false;
@@ -23,12 +22,15 @@ class ManageOrganisations extends Component
     public function render()
     {
         if (Auth::user()->hasRole('SuperAdmin')) {
-            $this->orgs = Organisation::orderBy('name')->get();
+
+            return view('livewire.organisation.manage-organisations',
+            ['orgs' => Organisation::orderBy('name')->paginate(6)]);
+
         } else {
-            $this->orgs = Organisation::where('owner_id', Auth::id())->orderBy('name')->get();
+            return view('livewire.organisation.manage-organisations',
+            ['orgs' => Organisation::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);        
         }
 
-        return view('livewire.organisation.manage-organisations');
     }
 
     public function editOrg($id)

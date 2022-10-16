@@ -20,7 +20,6 @@
             </div>
 
 
-            @if($orgs->count())
             <div class="mt-4 flex flex-col">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle">
@@ -34,11 +33,12 @@
                                         <x-table.header>Phone</x-table.header>
                                         @can('update-org')
                                         <x-table.header>
-                                            @role('SuperAdmin')
-                                            <button wire:click="toggleForm" type="button"
-                                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                                                Add New
-                                            </button> @endrole
+                                            @can('create-org')
+                                                <button wire:click="toggleForm" type="button"
+                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                                    Add New
+                                                </button> 
+                                            @endcan
                                         </x-table.header>
                                         @endcan
                                     </tr>
@@ -48,7 +48,7 @@
                                     @foreach($orgs as $org)
                                     <tr>
                                         <x-table.detail>
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
+                                            <a href="/competitions" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
                                                 }}<span class="sr-only">, {{ $org->name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $org->contact_name }}</x-table.detail>
@@ -83,13 +83,14 @@
                                         @endcan
                                     </tr>
                                     @endforeach
+                                    {{ $orgs->links() }}
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-            @endif
         </div>
 
 

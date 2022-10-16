@@ -14,6 +14,18 @@ class RolesAndPermissionSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // create permissions
+        Permission::create(['name' => 'create-role']);
+        Permission::create(['name' => 'read-role']);
+        Permission::create(['name' => 'update-role']);
+        Permission::create(['name' => 'delete-role']);
+        Permission::create(['name' => 'publish-role']);
+
+        Permission::create(['name' => 'create-permission']);
+        Permission::create(['name' => 'read-permission']);
+        Permission::create(['name' => 'update-permission']);
+        Permission::create(['name' => 'delete-permission']);
+        Permission::create(['name' => 'publish-permission']);
+
         Permission::create(['name' => 'create-org']);
         Permission::create(['name' => 'read-org']);
         Permission::create(['name' => 'update-org']);
@@ -40,8 +52,10 @@ class RolesAndPermissionSeeder extends Seeder
 
         // or may be done by chaining
         $role = Role::create(['name' => 'ClientAdmin'])
-        ->givePermissionTo(['read-org', 'update-org', 'publish-org',
-                            'create-comp','read-comp','update-comp','delete-comp']);
+        ->givePermissionTo([
+                'read-role', 'read-permission',
+                'read-org', 'update-org', 'publish-org',
+                'create-comp','read-comp','update-comp','delete-comp']);
 
         // or may be done by chaining
         $role = Role::create(['name' => 'CompManager'])

@@ -28,6 +28,7 @@ test('A SuperAdmin user can create an Organisation ', function () {
         ->set('contact_phone', '+60 1121316106')
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
+        ->assertEmitted('toggleMessage')
         ->assertSessionHas('message','Organisation successfully created.');
 
         $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
@@ -46,6 +47,7 @@ test('An authenticated User with "create-org" permission can create an Organisat
         ->set('contact_phone', '+60 11 2131 6106')
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
+        ->assertEmitted('toggleMessage')
         ->assertSessionHas('message','Organisation successfully created.');
 
 
