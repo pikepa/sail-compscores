@@ -21,7 +21,7 @@ class OrganisationFactory extends Factory
             'name' => fake()->company(),
             'contact_name' => fake()->name(),
             'contact_email' => fake()->safeEmail(),
-            'contact_phone' => fake()->phoneNumber(),
+            'contact_phone' => fake()->e164PhoneNumber(),
             'owner_id' => User::factory()->create()->id,
         ];
     }

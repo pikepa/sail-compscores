@@ -37,10 +37,11 @@ test('A SuperAdmin user can view any Organisation', function () {
     $this->actingAs($user);
 
     $this->get('/organisation')->assertOk()
-    ->assertSee('All Organisations')
+    ->assertSee('All Tenants')
     ->assertSee('Add New')
     ->assertSee($org->contact_name)
     ->assertSee($org->contact_email);
+
     $this->assertFalse($user->id == $org->owner_id);
 });
 

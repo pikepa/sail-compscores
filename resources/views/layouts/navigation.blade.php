@@ -6,16 +6,14 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/" >
-                        <h1 class=" text-3xl text-blue-800 font-extrabold">{{ env('APP_NAME') }}</h1>                   
+                        <h1 class=" text-3xl text-blue-800 font-extrabold">
+                           {{ session('APP_PAGE_TITLE') }}
+                        </h1>                   
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('organisation')" :active="request()->routeIs('organisation')">
                         {{ __('Organisation') }}
@@ -24,6 +22,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('results')" :active="request()->routeIs('results')">
                         {{ __('Results') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
             </div>

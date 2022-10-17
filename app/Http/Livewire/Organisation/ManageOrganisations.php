@@ -19,6 +19,11 @@ class ManageOrganisations extends Component
         'toggleMessage', 
     ];
 
+    public function mount()
+    {
+        session(['APP_PAGE_TITLE' => env('APP_PAGE_TITLE')]);
+    }
+
     public function render()
     {
         if (Auth::user()->hasRole('SuperAdmin')) {

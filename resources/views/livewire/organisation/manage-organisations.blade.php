@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'My Organisations')
+    @section('title', 'My Tenants')
     <div>
         @if(! $displayForm)
 
@@ -8,7 +8,7 @@
             <div class="-ml-8 mt-4 sm:flex sm:items-center justify-between">
                 <div class="sm:flex-row ">
                     @role('SuperAdmin')
-                    <h1 class="text-3xl font-semibold text-indigo-700">All Organisations</h1>
+                    <h1 class="text-3xl font-semibold text-indigo-700">All Tenants</h1>
                     @else
                     <h1 class="text-3xl font-semibold text-indigo-700">My Organisations</h1>
                     @endrole
@@ -48,7 +48,7 @@
                                     @foreach($orgs as $org)
                                     <tr>
                                         <x-table.detail>
-                                            <a href="/competitions" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
+                                            <a href="/organisation/myhome/{{ $org->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
                                                 }}<span class="sr-only">, {{ $org->name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $org->contact_name }}</x-table.detail>
