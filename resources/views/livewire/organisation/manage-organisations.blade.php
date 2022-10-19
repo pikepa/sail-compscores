@@ -48,7 +48,7 @@
                                     @foreach($orgs as $org)
                                     <tr>
                                         <x-table.detail>
-                                            <a href="/organisation/myhome/{{ $org->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
+                                            <a href="/organisation/client-home/{{ $org->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
                                                 }}<span class="sr-only">, {{ $org->name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $org->contact_name }}</x-table.detail>

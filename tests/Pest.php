@@ -15,6 +15,8 @@ use Illuminate\Auth\Authenticatable;
 
 uses(Tests\TestCase::class)->in('Feature', 'Unit');
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Expectations

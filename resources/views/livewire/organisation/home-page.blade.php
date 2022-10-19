@@ -1,8 +1,8 @@
-    @section('title', 'My Homepage')
+    @section('title', 'Client Homepage')
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('My Home Page') }}
+        <h2 class="font-semibold text-3xl text-indigo-800 leading-tight">
+            {{ session('APP_PAGE_TITLE') }}
         </h2>
     </x-slot>
 

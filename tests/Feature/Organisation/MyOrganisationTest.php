@@ -9,18 +9,20 @@ use Spatie\Permission\Models\Permission;
 beforeEach(function () {
     // Create role if it does not exist
     Role::firstOrCreate(['name' => 'ClientAdmin', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
+    Permission::firstOrCreate(['name' => 'read-user', 'guard_name' => 'web']);
+    Permission::firstOrCreate(['name' => 'read-comp', 'guard_name' => 'web']);
 });
 
-it('has My Home page', function () {
+test('a client admin can see the client Home page', function () {
 
-    $user = User::factory()->create()->assignRole('ClientAdmin');
+    $user = User::factory()->create()->assignRole('ClientAdmin')
+    ->givePermissionTo(['read-comp','read-user']);
     $org = Organisation::factory()->create(['owner_id' => $user->id]);
 
-    $this->actingAs($user)->get('/organisation/myhome/$org->id')
+
+    $this->actingAs($user)->get('/organisation/home/'.$org->id)
     ->assertOk()
-    ->assertSee($org->name)
-    ->assertSee('My Home Page');
+    ->assertSee($org->name);
 });
 
 test(' A guest cannot access the myorganisation page directly', function () {
@@ -28,5 +30,5 @@ test(' A guest cannot access the myorganisation page directly', function () {
     $user = User::factory()->create()->assignRole('ClientAdmin');
     $org = Organisation::factory()->create(['owner_id' => $user->id]);
 
-    $this->get('/organisation/myhome/$org->id')->assertRedirect('/login');
+    $this->get('/organisation/home/'.$org->id)->assertRedirect('/login');
 });

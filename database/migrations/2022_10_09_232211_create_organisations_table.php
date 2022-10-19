@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('contact_email');
             $table->string('contact_phone');
 
-            $table->foreignId('owner_id')->required();
+            $table->foreignId('owner_id')->references('id')->on('users')->required();
             $table->timestamps();
         });
     }

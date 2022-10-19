@@ -7,7 +7,7 @@
                 <div class="shrink-0 flex items-center">
                     <a href="/" >
                         <h1 class=" text-3xl text-blue-800 font-extrabold">
-                           {{ session('APP_PAGE_TITLE') }}
+                           {{ env('APP_PAGE_TITLE') }}
                         </h1>                   
                     </a>
                 </div>
