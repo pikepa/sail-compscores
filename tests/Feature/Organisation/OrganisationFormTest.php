@@ -1,12 +1,11 @@
 <?php
 
+use App\Models\Organisation;
 use App\Models\User;
 use Livewire\Livewire;
-use App\Models\Organisation;
 use function Pest\Faker\faker;
-
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
     beforeEach(function () {
         // Create role if it does not exist
@@ -14,7 +13,6 @@ use Spatie\Permission\Models\Permission;
         Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
         Permission::firstOrCreate(['name' => 'create-org', 'guard_name' => 'web']);
     });
-
 
 test('A SuperAdmin user can create an Organisation ', function () {
 
@@ -29,11 +27,10 @@ test('A SuperAdmin user can create an Organisation ', function () {
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
         ->assertEmitted('toggleMessage')
-        ->assertSessionHas('message','Organisation successfully created.');
+        ->assertSessionHas('message', 'Organisation successfully created.');
 
-        $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
+    $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
 });
-
 
 test('An authenticated User with "create-org" permission can create an Organisation ', function () {
 
@@ -48,10 +45,9 @@ test('An authenticated User with "create-org" permission can create an Organisat
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
         ->assertEmitted('toggleMessage')
-        ->assertSessionHas('message','Organisation successfully created.');
+        ->assertSessionHas('message', 'Organisation successfully created.');
 
-
-        $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
+    $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
 });
 
 test('An authenticated User without specific permission can not create an Organisation ', function () {
@@ -67,11 +63,9 @@ test('An authenticated User without specific permission can not create an Organi
         // ->set('contact_phone', faker()->e164PhoneNumber())
         ->call('saveOrg')
         ->assertStatus(403);
-
 });
 
-
-test('Organisation Validation rules on save', function($field, $value, $rule){
+test('Organisation Validation rules on save', function ($field, $value, $rule) {
     User::factory()->create(['email' => 'duplicate@email.com']);
 
     // Create an authorised user with permission
@@ -81,5 +75,4 @@ test('Organisation Validation rules on save', function($field, $value, $rule){
     ->set($field, $value)
     ->call('saveOrg')
     ->assertHasErrors([$field => $rule]);
-    })->with('org_validation');
-
+})->with('org_validation');

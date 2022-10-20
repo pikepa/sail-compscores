@@ -1,25 +1,9 @@
 <div>
-    @section('title', 'My Tenants')
+    @section('title', 'Home')
     <div>
-        @if(! $displayForm)
 
         <div class="max-w-4xl mx-auto">
-            <!-- page Header -->
-            <div class="-ml-8 mt-4 sm:flex sm:items-center justify-between">
-                <div class="sm:flex-row ">
-                    @role('SuperAdmin')
-                    <h1 class="text-3xl font-semibold text-indigo-700">All Tenants</h1>
-                    @else
-                    <h1 class="text-3xl font-semibold text-indigo-700">My Organisations</h1>
-                    @endrole
-                    <p class="mt-2 text-sm text-gray-700">A list of all the organisations in your account including
-                        their
-                        name and contact details.</p>
-                </div>
-                    <x-displayMessage />
-            </div>
-
-
+  
             <div class="mt-4 flex flex-col">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle">
@@ -27,13 +11,13 @@
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-slate-300">
                                     <tr>
-                                        <x-table.header>Organisation Name</x-table.header>
-                                        <x-table.header>Primary Contact</x-table.header>
-                                        <x-table.header>Email</x-table.header>
-                                        <x-table.header>Phone</x-table.header>
-                                        @can('update-org')
+                                        <x-table.header>Competition Name</x-table.header>
+                                        <x-table.header>Venu</x-table.header>
+                                        <x-table.header>Date</x-table.header>
+                                        <x-table.header>Organiser</x-table.header>
+                                        @can('update-comp')
                                         <x-table.header>
-                                            @can('create-org')
+                                            @can('create-comp')
                                                 <button wire:click="toggleForm" type="button"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                                     Add New
@@ -45,19 +29,19 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
-                                    @foreach($orgs as $org)
+                                    @foreach($comps as $comp)
                                     <tr>
                                         <x-table.detail>
-                                            <a href="/organisation/home/{{ $org->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
-                                                }}<span class="sr-only">, {{ $org->name }} </span></a>
+                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $comp->comp_name
+                                                }}<span class="sr-only">, {{ $comp->comp_name }} </span></a>
                                         </x-table.detail>
-                                        <x-table.detail>{{ $org->contact_name }}</x-table.detail>
-                                        <x-table.detail>{{ $org->contact_email }}</x-table.detail>
-                                        <x-table.detail>{{ $org->contact_phone }}</x-table.detail>
+                                        <x-table.detail>{{ $comp->comp_venu }}</x-table.detail>
+                                        <x-table.detail>{{ $comp->start_date }}</x-table.detail>
+                                        <x-table.detail>{{ $comp->contact_phone }}</x-table.detail>
                                         @can('update-org')
                                         <x-table.detail>
                                             <div class="flex flex-row justify-around">
-                                                <button wire:click="editOrg('{{ $org->id }}')" type="button"
+                                                <button wire:click="editOrg('{{ $comp->id }}')" type="button"
                                                     class="text-indigo-600 text-center hover:text-indigo-900">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -68,7 +52,7 @@
                                                 </button>
 
                                                 @can('delete-org')
-                                                <button wire:click="deleteOrg('{{ $org->id }}')" type="button"
+                                                <button wire:click="deleteOrg('{{ $comp->id }}')" type="button"
                                                     class="text-indigo-600 text-center hover:text-indigo-900">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -83,7 +67,6 @@
                                         @endcan
                                     </tr>
                                     @endforeach
-                                    {{ $orgs->links() }}
 
                                 </tbody>
                             </table>
@@ -96,12 +79,9 @@
 
 
     </div>
-    @else
     <!-- Add Organisation Form  -->
     <div class="max-w-3xl mx-auto sm:px-4 lg:px-6">
-        <livewire:organisation.organisation-form />
     </div>
-    @endif
 </div>
 
 <!-- <script>

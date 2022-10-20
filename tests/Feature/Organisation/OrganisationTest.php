@@ -1,18 +1,15 @@
 <?php
 
-use App\Models\User;
-use Livewire\Livewire;
 use App\Models\Organisation;
-use Spatie\Permission\Models\Role;
+use App\Models\User;
 use Spatie\Permission\Models\Permission;
-
+use Spatie\Permission\Models\Role;
 
 beforeEach(function () {
     // Create role if it does not exist
     Role::firstOrCreate(['name' => 'SuperAdmin', 'guard_name' => 'web']);
     Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
 });
-
 
 test('An authorised user can view their Organisations', function () {
     $user = User::factory()->create();
@@ -27,7 +24,7 @@ test('An authorised user can view their Organisations', function () {
 });
 
 test('A SuperAdmin user can view any Organisation', function () {
- 
+
     // Create SuperAdmin user
     $user = User::factory()->create()->assignRole('SuperAdmin');
 
@@ -44,4 +41,3 @@ test('A SuperAdmin user can view any Organisation', function () {
 
     $this->assertFalse($user->id == $org->owner_id);
 });
-

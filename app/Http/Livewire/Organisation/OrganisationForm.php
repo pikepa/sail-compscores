@@ -2,19 +2,25 @@
 
 namespace App\Http\Livewire\Organisation;
 
-use Livewire\Component;
 use App\Models\Organisation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Livewire\Component;
 
 class OrganisationForm extends Component
 {
-    public $name ;
-    public $contact_name ;
-    public $contact_email ;
-    public $contact_phone ;
-    public $owner_id ;
-    public $org_id ;
+    public $name;
+
+    public $contact_name;
+
+    public $contact_email;
+
+    public $contact_phone;
+
+    public $owner_id;
+
+    public $org_id;
+
     public $edit = false;
 
     protected $listeners = ['editOrg'];
@@ -27,11 +33,9 @@ class OrganisationForm extends Component
         'owner_id' => 'required|integer',
     ];
 
-
     public function mount()
     {
         $this->owner_id = Auth::user()->id;
-
     }
 
     public function render()
@@ -43,18 +47,17 @@ class OrganisationForm extends Component
     {
         $this->checkAuthority('update-org');
 
-        $this->edit=true;
-        
+        $this->edit = true;
+
         $org = Organisation::find($id);
         $this->org_id = $id;
         $this->name = $org->name;
         $this->contact_name = $org->contact_name;
         $this->contact_email = $org->contact_email;
         $this->contact_phone = $org->contact_phone;
-
     }
-    public function saveOrg()
 
+    public function saveOrg()
     {
         $validatedData = $this->validate();
 
@@ -66,12 +69,9 @@ class OrganisationForm extends Component
         $this->emitUp('toggleMessage');
 
         $this->emitUp('toggleForm');
-
     }
 
-
     public function updateOrg($id)
-
     {
         $validatedData = $this->validate();
 
@@ -83,7 +83,6 @@ class OrganisationForm extends Component
         $this->emitUp('toggleMessage');
 
         Session::put('message', 'Organisation successfully updated.');
-
     }
 
     //Validate User is signedin and has valid Permission

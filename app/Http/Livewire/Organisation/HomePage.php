@@ -2,13 +2,12 @@
 
 namespace App\Http\Livewire\Organisation;
 
-use Livewire\Component;
 use App\Models\Organisation;
-
+use Livewire\Component;
 
 class HomePage extends Component
 {
-    Public $org;
+    public $org;
 
     public function mount($id)
     {
