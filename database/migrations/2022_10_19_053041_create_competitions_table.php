@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('comp_name');
             $table->string('comp_venu');
+            $table->string('contact_phone')->nullable();
+
             $table->string('comp_type')->required();
             $table->timestamp('start_date');
 
