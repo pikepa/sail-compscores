@@ -61,7 +61,7 @@ class ClientForm extends Component
     {
         $validatedData = $this->validate();
 
-        $this->checkAuthority('create-org');
+        $this->checkAuthority('create-client');
 
         Client::create($validatedData);
 
@@ -75,7 +75,7 @@ class ClientForm extends Component
     {
         $validatedData = $this->validate();
 
-        $this->checkAuthority('update-org');
+        $this->checkAuthority('update-client');
 
         Client::find($id)->update($validatedData);
 

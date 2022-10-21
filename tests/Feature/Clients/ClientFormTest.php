@@ -22,10 +22,10 @@ test('A SuperAdmin user can create a Client', function () {
     $this->assertTrue(Client::whereName('Urban Energy')->exists());
 });
 
-test('An authenticated User with "create-org" permission can create an Organisation ', function () {
+test('An authenticated User with "create-client" permission can create an Organisation ', function () {
 
     // Create an authorised user with permission
-    $this->actingAs(User::factory()->create()->givePermissionTo('create-org'));
+    $this->actingAs(User::factory()->create()->givePermissionTo('create-client'));
 
     Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
@@ -59,7 +59,7 @@ test('Client Validation rules on save', function ($field, $value, $rule) {
     User::factory()->create(['email' => 'duplicate@email.com']);
 
     // Create an authorised user with permission
-    $this->actingAs(User::factory()->create()->givePermissionTo('create-org'));
+    $this->actingAs(User::factory()->create()->givePermissionTo('create-client'));
 
     Livewire::test('clients.client-form')
     ->set($field, $value)

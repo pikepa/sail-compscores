@@ -26,11 +26,11 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'delete-permission']);
         Permission::create(['name' => 'publish-permission']);
 
-        Permission::create(['name' => 'create-org']);
-        Permission::create(['name' => 'read-org']);
-        Permission::create(['name' => 'update-org']);
-        Permission::create(['name' => 'delete-org']);
-        Permission::create(['name' => 'publish-org']);
+        Permission::create(['name' => 'create-client']);
+        Permission::create(['name' => 'read-client']);
+        Permission::create(['name' => 'update-client']);
+        Permission::create(['name' => 'delete-client']);
+        Permission::create(['name' => 'publish-client']);
 
         Permission::create(['name' => 'create-user']);
         Permission::create(['name' => 'invite-user']);
@@ -62,11 +62,11 @@ class RolesAndPermissionSeeder extends Seeder
         ->givePermissionTo([
             'read-role', 'read-permission',
             'read-user', 'invite-user',
-            'read-org', 'update-org', 'publish-org',
+            'read-client', 'update-client', 'publish-client',
             'create-comp', 'read-comp', 'update-comp', 'delete-comp', 'publish-comp', ]);
 
         // or may be done by chaining
         $role = Role::create(['name' => 'CompManager'])
-            ->givePermissionTo(['read-org', 'read-comp', 'update-comp', 'publish-comp']);
+            ->givePermissionTo(['read-client', 'read-comp', 'update-comp', 'publish-comp']);
     }
 }

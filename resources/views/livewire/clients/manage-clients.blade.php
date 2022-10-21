@@ -99,7 +99,7 @@
     @else
     <!-- Add Organisation Form  -->
     <div class="max-w-3xl mx-auto sm:px-4 lg:px-6">
-        <livewire:organisation.organisation-form />
+        <livewire:clients.client-form />
     </div>
     @endif
 </div>
