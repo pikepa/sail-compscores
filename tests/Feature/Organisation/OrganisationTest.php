@@ -2,14 +2,6 @@
 
 use App\Models\Organisation;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
-beforeEach(function () {
-    // Create role if it does not exist
-    Role::firstOrCreate(['name' => 'SuperAdmin', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
-});
 
 test('An authorised user can view their Organisations', function () {
     $user = User::factory()->create();

@@ -3,16 +3,6 @@
 use App\Models\Organisation;
 use App\Models\User;
 use Livewire\Livewire;
-use function Pest\Faker\faker;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
-    beforeEach(function () {
-        // Create role if it does not exist
-        Role::firstOrCreate(['name' => 'SuperAdmin', 'guard_name' => 'web']);
-        Permission::firstOrCreate(['name' => 'update-org', 'guard_name' => 'web']);
-        Permission::firstOrCreate(['name' => 'create-org', 'guard_name' => 'web']);
-    });
 
 test('A SuperAdmin user can create an Organisation ', function () {
 

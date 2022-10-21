@@ -6,17 +6,6 @@ use App\Models\Competition;
 use App\Models\Organisation;
 use App\Models\User;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
-beforeEach(function () {
-    // Create role if it does not exist
-    Role::firstOrCreate(['name' => 'ClientAdmin', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'read-user', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'read-comp', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'create-comp', 'guard_name' => 'web']);
-    Permission::firstOrCreate(['name' => 'update-comp', 'guard_name' => 'web']);
-});
 
 test('A client admin can see the client Home page', function () {
     $user = User::factory()->create()->assignRole('ClientAdmin')
@@ -67,9 +56,15 @@ test('The organisation home page can display their own competitions', function (
     $this->actingAs($user);
 
     Livewire::test(Competitions::class, [$org->id])
+        ->assertSee('Date')
+        ->assertSee($comp->formatted_date)   
         ->assertSee('Competition Name')
         ->assertSee($comp->name)
         ->assertSee('Venu')
         ->assertSee($comp->venu)
+        ->assertSee('Type')
+        ->assertSee($comp->type)
+        
+
         ->assertSee('Add New');
 });

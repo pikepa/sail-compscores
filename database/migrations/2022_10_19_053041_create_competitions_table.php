@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('comp_name');
             $table->string('comp_venu');
+            $table->string('comp_type')->required();
+            $table->timestamp('start_date');
+
             $table->foreignId('org_id')->references('id')->on('organisations')->required();
             $table->timestamps();
         });

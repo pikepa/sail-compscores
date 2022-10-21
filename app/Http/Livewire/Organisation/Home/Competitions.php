@@ -8,6 +8,7 @@ use Livewire\Component;
 class Competitions extends Component
 {
     public $comps = [];
+    public bool $modalFormVisible;
 
     public function mount($org)
     {

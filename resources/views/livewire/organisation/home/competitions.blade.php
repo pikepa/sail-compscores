@@ -11,9 +11,10 @@
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-slate-300">
                                     <tr>
+                                        <x-table.header>Date</x-table.header>
                                         <x-table.header>Competition Name</x-table.header>
                                         <x-table.header>Venu</x-table.header>
-                                        <x-table.header>Date</x-table.header>
+                                        <x-table.header>Type</x-table.header>
                                         <x-table.header>Organiser</x-table.header>
                                         @can('update-comp')
                                         <x-table.header>
@@ -31,12 +32,14 @@
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
                                     @foreach($comps as $comp)
                                     <tr>
+                                        <x-table.detail>{{ $comp->formatted_date }}</x-table.detail>
                                         <x-table.detail>
+
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $comp->comp_name
                                                 }}<span class="sr-only">, {{ $comp->comp_name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $comp->comp_venu }}</x-table.detail>
-                                        <x-table.detail>{{ $comp->start_date }}</x-table.detail>
+                                        <x-table.detail>{{ $comp->comp_type }}</x-table.detail>
                                         <x-table.detail>{{ $comp->contact_phone }}</x-table.detail>
                                         @can('update-org')
                                         <x-table.detail>
