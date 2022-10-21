@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Livewire\Organisation\HomePage;
-use App\Http\Livewire\Organisation\ManageOrganisations;
-use App\Http\Livewire\Results\ManageResults;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Clients\HomePage;
+use App\Http\Livewire\Clients\ManageClients;
+use App\Http\Livewire\Results\ManageResults;
 
 Route::get('/', function () {
     return view('pages.welcome');
@@ -13,8 +13,8 @@ Route::get('/profile', function () {
 })->name('profile');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/organisation/home/{id}', HomePage::class)->name('org-home');
-    Route::get('/organisation', ManageOrganisations::class)->name('organisation');
+    Route::get('/client/home/{id}', HomePage::class)->name('client-home');
+    Route::get('/client', ManageClients::class)->name('clients');
 
     Route::get('/results', ManageResults::class)->name('results');
 

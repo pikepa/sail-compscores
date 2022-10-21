@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('comp_type')->required();
             $table->timestamp('start_date');
 
-            $table->foreignId('org_id')->references('id')->on('organisations')->required();
+            $table->foreignId('client_id')->references('id')->on('clients')->required();
             $table->timestamps();
         });
     }

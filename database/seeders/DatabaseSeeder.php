@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
         //     RolesAndPermissionSeeder::class,
         // ]);
 
-        //Create organisation and other Seeds
+        //Create clients and other Seeds
         $this->call([
             UserSeeder::class,
-            OrganisationSeeder::class,
+            ClientSeeder::class,
             CompetitionSeeder::class,
         ]);
     }

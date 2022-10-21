@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Organisation;
+use App\Models\Client;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class OrganisationSeeder extends Seeder
+class ClientSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class OrganisationSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('organisations')->insert([
+        DB::table('clients')->insert([
             'name' => 'Urban Energy Southport',
             'contact_name' => 'Kelly Williams',
             'contact_email' => 'kellywilliams@gmail.com',
@@ -23,7 +23,7 @@ class OrganisationSeeder extends Seeder
             'owner_id' => 2,
         ]);
 
-        DB::table('organisations')->insert([
+        DB::table('clients')->insert([
             'name' => 'Urban Energy Miami',
             'contact_name' => 'Fred Blogs',
             'contact_email' => 'fredblogs@gmail.com',
@@ -31,8 +31,8 @@ class OrganisationSeeder extends Seeder
             'owner_id' => 2,
         ]);
 
-        //Create Random Organisations
-        Organisation::factory()->count(5)
+        //Create Random Clients
+        Client::factory()->count(5)
         ->create();
     }
 }

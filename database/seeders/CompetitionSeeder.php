@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Competition;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CompetitionSeeder extends Seeder
 {
@@ -15,7 +14,7 @@ class CompetitionSeeder extends Seeder
      */
     public function run()
     {
-        //Create Random Organisations
+        //Create Random competitions
         Competition::factory()->count(5)
-        ->create(['org_id' => 2 ]);    }
+        ->create(['client_id' => 2 ]);    }
 }

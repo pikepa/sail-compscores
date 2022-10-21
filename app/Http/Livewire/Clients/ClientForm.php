@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Organisation;
+namespace App\Http\Livewire\Clients;
 
-use App\Models\Organisation;
+use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
-class OrganisationForm extends Component
+class ClientForm extends Component
 {
     public $name;
 
@@ -40,7 +40,7 @@ class OrganisationForm extends Component
 
     public function render()
     {
-        return view('livewire.organisation.organisation-form');
+        return view('livewire.clients.client-form');
     }
 
     public function editOrg($id)
@@ -49,7 +49,7 @@ class OrganisationForm extends Component
 
         $this->edit = true;
 
-        $org = Organisation::find($id);
+        $org = Client::find($id);
         $this->org_id = $id;
         $this->name = $org->name;
         $this->contact_name = $org->contact_name;
@@ -63,9 +63,9 @@ class OrganisationForm extends Component
 
         $this->checkAuthority('create-org');
 
-        Organisation::create($validatedData);
+        Client::create($validatedData);
 
-        Session::put('message', 'Organisation successfully created.');
+        Session::put('message', 'Client successfully created.');
         $this->emitUp('toggleMessage');
 
         $this->emitUp('toggleForm');
@@ -77,7 +77,7 @@ class OrganisationForm extends Component
 
         $this->checkAuthority('update-org');
 
-        Organisation::find($id)->update($validatedData);
+        Client::find($id)->update($validatedData);
 
         $this->emitUp('toggleForm');
         $this->emitUp('toggleMessage');

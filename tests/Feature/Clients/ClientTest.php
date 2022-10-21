@@ -1,18 +1,18 @@
 <?php
 
-use App\Models\Organisation;
+use App\Models\Client;
 use App\Models\User;
 
 test('An authorised user can view their Organisations', function () {
     $user = User::factory()->create();
-    $org = Organisation::factory()->create(['owner_id' => $user->id]);
+    $client = Client::factory()->create(['owner_id' => $user->id]);
 
-    $this->actingAs($user)->get('/organisation')->assertOk()
+    $this->actingAs($user)->get('/client')->assertOk()
     ->assertSee('My Organisations')
     ->assertSee($user->name)
-    ->assertSee($org->contact_name)
-    ->assertSee($org->contact_email)
-    ->assertSee($org->contact_phone);
+    ->assertSee($client->contact_name)
+    ->assertSee($client->contact_email)
+    ->assertSee($client->contact_phone);
 });
 
 test('A SuperAdmin user can view any Organisation', function () {
@@ -21,15 +21,15 @@ test('A SuperAdmin user can view any Organisation', function () {
     $user = User::factory()->create()->assignRole('SuperAdmin');
 
     // Create Multiple Random Organisation
-    $org = Organisation::factory()->create();
+    $client = Client::factory()->create();
 
     $this->actingAs($user);
 
-    $this->get('/organisation')->assertOk()
+    $this->get('/client')->assertOk()
     ->assertSee('All Tenants')
     ->assertSee('Add New')
-    ->assertSee($org->contact_name)
-    ->assertSee($org->contact_email);
+    ->assertSee($client->contact_name)
+    ->assertSee($client->contact_email);
 
-    $this->assertFalse($user->id == $org->owner_id);
+    $this->assertFalse($user->id == $client->owner_id);
 });

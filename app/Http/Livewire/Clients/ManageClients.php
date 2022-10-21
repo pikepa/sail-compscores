@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Organisation;
+namespace App\Http\Livewire\Clients;
 
-use App\Models\Organisation;
+use App\Models\Client;
+use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Livewire\Component;
 
-class ManageOrganisations extends Component
+class ManageClients extends Component
 {
     public $displayMessage = false;
 
@@ -26,11 +26,11 @@ class ManageOrganisations extends Component
     public function render()
     {
         if (Auth::user()->hasRole('SuperAdmin')) {
-            return view('livewire.organisation.manage-organisations',
-            ['orgs' => Organisation::orderBy('name')->paginate(6)]);
+            return view('livewire.clients.manage-clients',
+            ['clients' => Client::orderBy('name')->paginate(6)]);
         } else {
-            return view('livewire.organisation.manage-organisations',
-            ['orgs' => Organisation::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);
+            return view('livewire.clients.manage-clients',
+            ['clients' => Client::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);
         }
     }
 
@@ -43,15 +43,15 @@ class ManageOrganisations extends Component
         $this->toggleform();
     }
 
-    public function deleteOrg($id)
+    public function deleteClient( $id)
     {
         $this->checkAuthority('delete-org');
 
-        Organisation::find($id)->delete();
+        Client::find($id)->delete();
 
         $this->emitSelf('toggleMessage');
 
-        Session::put('message', 'Organisation successfully deleted.');
+        Session::put('message', 'Client successfully deleted.');
     }
 
     public function toggleForm()

@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Organisation;
 use Carbon\Carbon;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +22,7 @@ class CompetitionFactory extends Factory
             'comp_name' => fake()->lastName(),
             'comp_venu' => fake()->userName(),
             'comp_type' => fake()->country(),
-            'org_id' => Organisation::factory()->create()->id,
+            'client_id' => Client::factory()->create()->id,
             'start_date' => Carbon::now(),
         ];
     }

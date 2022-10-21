@@ -1,15 +1,15 @@
 <?php
 
-use App\Models\Organisation;
+use App\Models\Client;
 use App\Models\User;
 use Livewire\Livewire;
 
-test('A SuperAdmin user can create an Organisation ', function () {
+test('A SuperAdmin user can create a Client', function () {
 
     // Create SuperAdmin user
     $this->actingAs(User::factory()->create()->assignRole('SuperAdmin'));
 
-    Livewire::test('organisation.organisation-form')
+    Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
         ->set('contact_name', 'Peter Pike')
         ->set('contact_email', 'pikepeter@gmail.com')
@@ -17,9 +17,9 @@ test('A SuperAdmin user can create an Organisation ', function () {
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
         ->assertEmitted('toggleMessage')
-        ->assertSessionHas('message', 'Organisation successfully created.');
+        ->assertSessionHas('message', 'Client successfully created.');
 
-    $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
+    $this->assertTrue(Client::whereName('Urban Energy')->exists());
 });
 
 test('An authenticated User with "create-org" permission can create an Organisation ', function () {
@@ -27,7 +27,7 @@ test('An authenticated User with "create-org" permission can create an Organisat
     // Create an authorised user with permission
     $this->actingAs(User::factory()->create()->givePermissionTo('create-org'));
 
-    Livewire::test('organisation.organisation-form')
+    Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
         ->set('contact_name', 'Peter Pike')
         ->set('contact_email', 'pikepeter@gmail.com')
@@ -35,9 +35,9 @@ test('An authenticated User with "create-org" permission can create an Organisat
         ->call('saveOrg')
         ->assertEmitted('toggleForm')
         ->assertEmitted('toggleMessage')
-        ->assertSessionHas('message', 'Organisation successfully created.');
+        ->assertSessionHas('message', 'Client successfully created.');
 
-    $this->assertTrue(Organisation::whereName('Urban Energy')->exists());
+    $this->assertTrue(Client::whereName('Urban Energy')->exists());
 });
 
 test('An authenticated User without specific permission can not create an Organisation ', function () {
@@ -45,7 +45,7 @@ test('An authenticated User without specific permission can not create an Organi
     // Create SuperAdmin user
     $this->actingAs(User::factory()->create());
 
-    Livewire::test('organisation.organisation-form')
+    Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
         ->set('contact_name', 'Peter Pike')
         ->set('contact_email', 'pikepeter@gmail.com')
@@ -55,14 +55,14 @@ test('An authenticated User without specific permission can not create an Organi
         ->assertStatus(403);
 });
 
-test('Organisation Validation rules on save', function ($field, $value, $rule) {
+test('Client Validation rules on save', function ($field, $value, $rule) {
     User::factory()->create(['email' => 'duplicate@email.com']);
 
     // Create an authorised user with permission
     $this->actingAs(User::factory()->create()->givePermissionTo('create-org'));
 
-    Livewire::test('organisation.organisation-form')
+    Livewire::test('clients.client-form')
     ->set($field, $value)
     ->call('saveOrg')
     ->assertHasErrors([$field => $rule]);
-})->with('org_validation');
+})->with('client_validation');

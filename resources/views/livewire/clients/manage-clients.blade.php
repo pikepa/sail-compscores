@@ -45,19 +45,19 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
-                                    @foreach($orgs as $org)
-                                    <tr>
+                                    @foreach($clients as $client)
+                                    <tr>client
                                         <x-table.detail>
-                                            <a href="/organisation/home/{{ $org->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $org->name
-                                                }}<span class="sr-only">, {{ $org->name }} </span></a>
+                                            <a href="/client/home/{{ $client->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $client->name
+                                                }}<span class="sr-only">, {{ $client->name }} </span></a>
                                         </x-table.detail>
-                                        <x-table.detail>{{ $org->contact_name }}</x-table.detail>
-                                        <x-table.detail>{{ $org->contact_email }}</x-table.detail>
-                                        <x-table.detail>{{ $org->contact_phone }}</x-table.detail>
+                                        <x-table.detail>{{ $client->contact_name }}</x-table.detail>
+                                        <x-table.detail>{{ $client->contact_email }}</x-table.detail>
+                                        <x-table.detail>{{ $client->contact_phone }}</x-table.detail>
                                         @can('update-org')
                                         <x-table.detail>
                                             <div class="flex flex-row justify-around">
-                                                <button wire:click="editOrg('{{ $org->id }}')" type="button"
+                                                <button wire:click="editOrg('{{ $client->id }}')" type="button"
                                                     class="text-indigo-600 text-center hover:text-indigo-900">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -68,7 +68,7 @@
                                                 </button>
 
                                                 @can('delete-org')
-                                                <button wire:click="deleteOrg('{{ $org->id }}')" type="button"
+                                                <button wire:click="deleteOrg('{{ $client->id }}')" type="button"
                                                     class="text-indigo-600 text-center hover:text-indigo-900">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -83,7 +83,7 @@
                                         @endcan
                                     </tr>
                                     @endforeach
-                                    {{ $orgs->links() }}
+                                    {{ $clients->links() }}
 
                                 </tbody>
                             </table>
