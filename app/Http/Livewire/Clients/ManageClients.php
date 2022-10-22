@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Clients;
 
 use App\Models\Client;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Livewire\Component;
 
 class ManageClients extends Component
 {
@@ -43,7 +43,7 @@ class ManageClients extends Component
         $this->toggleform();
     }
 
-    public function deleteClient( $id)
+    public function deleteClient($id)
     {
         $this->checkAuthority('delete-org');
 

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Clients\HomePage;
 use App\Http\Livewire\Clients\ManageClients;
 use App\Http\Livewire\Results\ManageResults;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.welcome');

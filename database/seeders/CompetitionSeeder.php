@@ -16,5 +16,6 @@ class CompetitionSeeder extends Seeder
     {
         //Create Random competitions
         Competition::factory()->count(5)
-        ->create(['client_id' => 2 ]);    }
+        ->create(['client_id' => 2]);
+    }
 }

@@ -14,20 +14,18 @@ class Competition extends Model
         'created_at',
         'updated_at',
         'start_date',
-        'released_at'
+        'released_at',
     ];
 
-public function scopeReleased(Builder $query): Builder
-{
-    return $query->whereNotNull('released_at');
-}
-
-
-
-    public function getFormattedDateAttribute() {
-        $date = $this->start_date->format('D, d M Y');
-        return $date; 
+    public function scopeReleased(Builder $query): Builder
+    {
+        return $query->whereNotNull('released_at');
     }
 
+    public function getFormattedDateAttribute()
+    {
+        $date = $this->start_date->format('D, d M Y');
 
+        return $date;
+    }
 }

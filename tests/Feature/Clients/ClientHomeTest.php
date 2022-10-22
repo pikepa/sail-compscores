@@ -1,12 +1,10 @@
 <?php
 
-use App\Models\User;
-use App\Models\Client;
-use Livewire\Livewire;
-use App\Models\Competition;
-use App\Http\Livewire\Clients\Home\Users;
 use App\Http\Livewire\Clients\Home\Competitions;
-
+use App\Http\Livewire\Clients\Home\Users;
+use App\Models\Client;
+use App\Models\User;
+use Livewire\Livewire;
 
 test('A client admin can see the client Home page', function () {
     $user = User::factory()->create()->assignRole('ClientAdmin')
@@ -45,5 +43,3 @@ test('The Client home page can render the Users livewire component', function ()
 
     $component->assertStatus(200);
 });
-
-

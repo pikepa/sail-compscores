@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Spatie\Permission\PermissionRegistrar;
-use Illuminate\Database\Migrations\Migration;
 use Database\Seeders\RolesAndPermissionSeeder;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Spatie\Permission\PermissionRegistrar;
 
 class CreatePermissionTables extends Migration
 {
@@ -119,7 +119,7 @@ class CreatePermissionTables extends Migration
             ->forget(config('permission.cache.key'));
 
         $seeder = new RolesAndPermissionSeeder();
-        $seeder->run();   
+        $seeder->run();
     }
 
     /**

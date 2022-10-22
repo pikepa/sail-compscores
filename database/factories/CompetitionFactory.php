@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use App\Models\Client;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,10 +26,11 @@ class CompetitionFactory extends Factory
             'start_date' => fake()->dateTimeBetween('-10 week', '-1 week'),
         ];
     }
+
     public function released(Carbon $date = null): self
     {
         return $this->state(
-            fn($attributes) => ['released_at' => $date ?? Carbon::now()]
+            fn ($attributes) => ['released_at' => $date ?? Carbon::now()]
         );
     }
 }
