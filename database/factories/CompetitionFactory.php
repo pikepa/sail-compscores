@@ -23,7 +23,13 @@ class CompetitionFactory extends Factory
             'comp_venu' => fake()->userName(),
             'comp_type' => fake()->country(),
             'client_id' => Client::factory()->create()->id,
-            'start_date' => Carbon::now(),
+            'start_date' => fake()->dateTimeBetween('-10 week', '-1 week'),
         ];
+    }
+    public function released(Carbon $date = null): self
+    {
+        return $this->state(
+            fn($attributes) => ['released_at' => $date ?? Carbon::now()]
+        );
     }
 }

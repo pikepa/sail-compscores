@@ -46,27 +46,4 @@ test('The Client home page can render the Users livewire component', function ()
     $component->assertStatus(200);
 });
 
-test('The Client home page can display their own competitions', function () {
-    // Create an Client for which we
-    // want to look at Competitions
-$this->withoutExceptionHandling();
-    $user = User::factory()->create()->assignRole('ClientAdmin')
-    ->givePermissionTo(['read-comp', 'create-comp', 'update-comp', 'read-user']);
-    $client = Client::factory()->create();
-    $comp = Competition::factory()->create(['client_id' => $client->id]);
 
-    $this->actingAs($user);
-
-    Livewire::test(Competitions::class, [$client->id])
-        ->assertSee('Date')
-        ->assertSee($comp->formatted_date)   
-        ->assertSee('Competition Name')
-        ->assertSee($comp->name)
-        ->assertSee('Venu')
-        ->assertSee($comp->venu)
-        ->assertSee('Type')
-        ->assertSee($comp->type)
-        
-
-        ->assertSee('Add New');
-});

@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->string('comp_type')->required();
             $table->timestamp('start_date');
+            $table->timestamp('released_at')->nullable();
 
             $table->foreignId('client_id')->references('id')->on('clients')->required();
             $table->timestamps();

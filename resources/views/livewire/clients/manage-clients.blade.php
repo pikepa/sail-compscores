@@ -46,7 +46,7 @@
 
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
                                     @foreach($clients as $client)
-                                    <tr>client
+                                    <tr>
                                         <x-table.detail>
                                             <a href="/client/home/{{ $client->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $client->name
                                                 }}<span class="sr-only">, {{ $client->name }} </span></a>

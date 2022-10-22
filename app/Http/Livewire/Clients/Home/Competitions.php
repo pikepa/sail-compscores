@@ -12,7 +12,10 @@ class Competitions extends Component
 
     public function mount($client)
     {
-        $this->comps = Competition::where('client_id', $client)->get();
+        $this->comps = Competition::query()
+        -> where('client_id', $client)
+        -> released()
+        -> orderByDesc('start_date')->get();
     }
 
     public function render()
