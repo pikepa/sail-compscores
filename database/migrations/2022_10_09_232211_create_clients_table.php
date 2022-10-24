@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->string('contact_email');
             $table->string('contact_phone');
 
-            $table->foreignId('owner_id')->references('id')->on('users')->required();
+            $table->foreignIdFor(User::class)->name('owner_id')->required();
             $table->timestamps();
         });
     }

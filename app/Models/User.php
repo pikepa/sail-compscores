@@ -3,11 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\Client;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -43,8 +46,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function organisations()
+    public function clients(): HasMany
     {
-        return $this->hasMany(Organisation::class);
+        return $this->hasMany(Client::class, 'owner_id');
+    }
+    
+    public function client_users(): BelongsToMany
+    {
+        return $this->belongsToMany(Client::class, 'client_users')
+        ->withTimestamps();
     }
 }

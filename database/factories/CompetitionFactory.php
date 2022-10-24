@@ -24,6 +24,7 @@ class CompetitionFactory extends Factory
             'comp_type' => fake()->country(),
             'client_id' => Client::factory()->create()->id,
             'start_date' => fake()->dateTimeBetween('-10 week', '-1 week'),
+            'isPublic'  => 0,
         ];
     }
 

@@ -39,7 +39,7 @@ test('It shows only released competitions', function () {
         ->assertDontSeeText($unreleasedComp->comp_name);
 });
 
-test('it shows competitions by start date', function () {
+test('it shows competitions by start date descending', function () {
     // set up two competitions one starting before the other
     $earliestComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'start_date' => Carbon::yesterday()]);
     $lastComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'start_date' => Carbon::now()]);
@@ -52,4 +52,30 @@ test('it shows competitions by start date', function () {
             $lastComp->comp_name,
             $earliestComp->comp_name,
         ]);
+});
+
+test('a competition is identified as public when displaying the name', function () {
+      // set up a competition one 
+      $publicComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'isPublic' => 1]);
+      
+      //Act & Assert
+      $this->actingAs($this->user);
+      Livewire::test(Competitions::class, [$this->client->id])
+      ->assertSeeText([
+          $publicComp->comp_name .' (P)',
+      ]);
+    //expect()->
+});
+
+it('only returns released competitions for released scope', function () {
+    // set up two competitions one released one not
+    $releasedComp = Competition::factory()->released()->create(['client_id' => $this->client->id]);
+    Competition::factory()->create(['client_id' => $this->client->id]);
+
+    //Act and assert
+    $this->actingAs($this->user);
+
+    expect(Competition::released()->get())
+    ->toHaveCount(1)
+    ->first()->id->toEqual($releasedComp->id);
 });

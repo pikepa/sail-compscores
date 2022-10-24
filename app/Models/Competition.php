@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Athlete;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Competition extends Model
 {
@@ -28,4 +32,29 @@ class Competition extends Model
 
         return $date;
     }
+
+    public function getDisplayNameAttribute()
+    {   $name = $this->comp_name;
+        if($this->isPublic == 1 ){
+            $name = $this->comp_name . ' (P)';
+        }
+        return $name;
+    }
+
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
+    }
+
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function athlete_competitions(): BelongsToMany
+    {
+        return $this->belongsToMany(Athlete::class, 'athlete_competitions')
+        ->withTimestamps();
+    }
+
 }

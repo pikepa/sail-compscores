@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Client;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,14 +15,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('client_users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->foreignIdFor(Client::class)->nullable();
-            $table->rememberToken();
+            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Client::class);
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('client_users');
     }
 };

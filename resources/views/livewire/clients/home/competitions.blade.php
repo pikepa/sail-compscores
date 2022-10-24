@@ -36,7 +36,7 @@
                                         <x-table.detail>
 
                                             <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $comp->comp_name
-                                                }}<span class="sr-only">, {{ $comp->comp_name }} </span></a>
+                                                }}<span class="sr-only">, {{ $comp->display_name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $comp->comp_venu }}</x-table.detail>
                                         <x-table.detail>{{ $comp->comp_type }}</x-table.detail>

@@ -69,8 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    'timezone' => 'Asia/Singapore',
+    
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
