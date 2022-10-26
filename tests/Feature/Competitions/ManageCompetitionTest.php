@@ -11,14 +11,20 @@ use Livewire\Livewire;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-    $this->user = User::factory()->create()->assignRole('ClientAdmin');
-    $this->client = Client::factory()->create();
+
+
 });
 
 test('A ClientAdmin can display the competitions page', function () {
-    $this->actingAs($this->user);
+    //Arrange
+    $client = Client::factory()
+    ->has(User::factory())  
+    ->create();
 
-    Livewire::test(Competitions::class, [$this->client->id])
+    //Act & Assert
+    loginAsUser()->assignRole('ClientAdmin');
+
+    Livewire::test(Competitions::class, [$client->id])
         ->assertSee('Date')
         ->assertSee('Competition Name')
         ->assertSee('Venu')
@@ -27,27 +33,34 @@ test('A ClientAdmin can display the competitions page', function () {
 });
 
 test('It shows only released competitions', function () {
-    // set up two competitions one released one not
-    $releasedComp = Competition::factory()->released()->create(['client_id' => $this->client->id]);
-    $unreleasedComp = Competition::factory()->create(['client_id' => $this->client->id]);
+        //Arrange
+        $client = Client::factory()
+        ->has(User::factory())  
+        ->create();
+        // set up two competitions one released one not
+        $releasedComp = Competition::factory()->released()->create(['client_id' => $client->id]);
+        $unreleasedComp = Competition::factory()->create(['client_id' => $client->id]);
 
     //Act and assert
-    $this->actingAs($this->user);
-
-    Livewire::test(Competitions::class, [$this->client->id])
+    loginAsUser();
+    Livewire::test(Competitions::class, [$client->id])
         ->assertSeeText($releasedComp->comp_name)
         ->assertDontSeeText($unreleasedComp->comp_name);
 });
 
 test('it shows competitions by start date descending', function () {
+    //Arrange
+    $client = Client::factory()
+    ->has(User::factory())  
+    ->create();
     // set up two competitions one starting before the other
-    $earliestComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'start_date' => Carbon::yesterday()]);
-    $lastComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'start_date' => Carbon::now()]);
+    $earliestComp = Competition::factory()->released()->create(['client_id' => $client->id, 'start_date' => Carbon::yesterday()]);
+    $lastComp = Competition::factory()->released()->create(['client_id' => $client->id, 'start_date' => Carbon::now()]);
 
     //Act and assert
-    $this->actingAs($this->user);
+    loginAsUser();
 
-    Livewire::test(Competitions::class, [$this->client->id])
+    Livewire::test(Competitions::class, [$client->id])
         ->assertSeeTextInOrder([
             $lastComp->comp_name,
             $earliestComp->comp_name,
@@ -55,12 +68,16 @@ test('it shows competitions by start date descending', function () {
 });
 
 test('a competition is identified as public when displaying the name', function () {
-      // set up a competition one 
-      $publicComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'isPublic' => 1]);
+    //Arrange
+    $client = Client::factory()
+    ->has(User::factory())  
+    ->create();  
+    // set up a competition one 
+      $publicComp = Competition::factory()->released()->create(['client_id' => $client->id, 'isPublic' => 1]);
       
       //Act & Assert
-      $this->actingAs($this->user);
-      Livewire::test(Competitions::class, [$this->client->id])
+      loginAsUser();
+      Livewire::test(Competitions::class, [$client->id])
       ->assertSeeText([
           $publicComp->comp_name .' (P)',
       ]);
@@ -68,13 +85,16 @@ test('a competition is identified as public when displaying the name', function 
 });
 
 it('only returns released competitions for released scope', function () {
+    //Arrange
+    $client = Client::factory()
+    ->has(User::factory())  
+    ->create();  
     // set up two competitions one released one not
-    $releasedComp = Competition::factory()->released()->create(['client_id' => $this->client->id]);
-    Competition::factory()->create(['client_id' => $this->client->id]);
+    $releasedComp = Competition::factory()->released()->create(['client_id' => $client->id]);
+    Competition::factory()->create(['client_id' => $client->id]);
 
     //Act and assert
-    $this->actingAs($this->user);
-
+    loginAsUser();
     expect(Competition::released()->get())
     ->toHaveCount(1)
     ->first()->id->toEqual($releasedComp->id);

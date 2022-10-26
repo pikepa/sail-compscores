@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Auth\Authenticatable;
 
 /*
@@ -41,7 +42,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function actingAs(Authenticatable $user, string $driver = null)
-{
-    return test()->actingAs($user, $driver);
-}
+
+
+    function loginAsUser(User $user = null): User
+    {
+        $user = $user ?? User::factory()->create();
+        test()->actingAs($user);
+
+        return $user;
+    }

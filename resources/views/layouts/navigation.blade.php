@@ -15,8 +15,18 @@
                 <!-- Navigation Links -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('clients')" :active="request()->routeIs('client')">
+                    <x-nav-link :href="route('clients')" :active="request()->routeIs('clients')">
                         {{ __('Organisation') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('competitions')" :active="request()->routeIs('competitions')">
+                        {{ __('Competitions') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
+                        {{ __('Events') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

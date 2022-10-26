@@ -15,6 +15,8 @@ Route::get('/profile', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/client/home/{id}', HomePage::class)->name('client-home');
     Route::get('/client', ManageClients::class)->name('clients');
+    Route::get('/competitions', ManageClients::class)->name('competitions');
+    Route::get('/events', ManageClients::class)->name('events');
 
     Route::get('/results', ManageResults::class)->name('results');
 

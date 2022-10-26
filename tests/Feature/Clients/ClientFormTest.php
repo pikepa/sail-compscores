@@ -7,7 +7,7 @@ use Livewire\Livewire;
 test('A SuperAdmin user can create a Client', function () {
 
     // Create SuperAdmin user
-    $this->actingAs(User::factory()->create()->assignRole('SuperAdmin'));
+    loginAsUser()->assignRole('SuperAdmin');
 
     Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
@@ -25,7 +25,7 @@ test('A SuperAdmin user can create a Client', function () {
 test('An authenticated User with "create-client" permission can create an Organisation ', function () {
 
     // Create an authorised user with permission
-    $this->actingAs(User::factory()->create()->givePermissionTo('create-client'));
+    loginAsUser()->givePermissionTo('create-client');
 
     Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
@@ -43,7 +43,7 @@ test('An authenticated User with "create-client" permission can create an Organi
 test('An authenticated User without specific permission can not create an Organisation ', function () {
 
     // Create SuperAdmin user
-    $this->actingAs(User::factory()->create());
+    loginAsUser();
 
     Livewire::test('clients.client-form')
         ->set('name', 'Urban Energy')
@@ -59,7 +59,7 @@ test('Client Validation rules on save', function ($field, $value, $rule) {
     User::factory()->create(['email' => 'duplicate@email.com']);
 
     // Create an authorised user with permission
-    $this->actingAs(User::factory()->create()->givePermissionTo('create-client'));
+    loginAsUser()->givePermissionTo('create-client');
 
     Livewire::test('clients.client-form')
     ->set($field, $value)

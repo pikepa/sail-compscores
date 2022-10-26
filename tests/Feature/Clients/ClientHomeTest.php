@@ -5,21 +5,29 @@ use App\Http\Livewire\Clients\Home\Users;
 use App\Models\Client;
 use App\Models\User;
 use Livewire\Livewire;
+use function Pest\Laravel\get;
 
 test('A client admin can see the client Home page', function () {
-    $user = User::factory()->create()->assignRole('ClientAdmin')
-    ->givePermissionTo(['read-comp', 'read-user']);
-    $client = Client::factory()->create(['owner_id' => $user->id]);
+    //Arrange
+    $client = Client::factory()
+        ->has(User::factory())  
+        ->create();
 
-    $this->actingAs($user)->get('/client/home/'.$client->id)
-    ->assertOk()
-    ->assertSee($client->name);
+    //Act & Assert
+    loginAsUser($client->user)->assignRole('ClientAdmin');
+    
+    get('/client/home/'.$client->id)
+        ->assertOk()
+        ->assertSee($client->name);
 });
 
 test('A guest cannot access the my Client page directly', function () {
-    $user = User::factory()->create()->assignRole('ClientAdmin');
-    $client = Client::factory()->create(['owner_id' => $user->id]);
-
+    //Arrange
+    $client = Client::factory()
+        ->has(User::factory())  
+        ->create();
+        
+    //Act & Assert
     $this->get('/client/home/'.$client->id)->assertRedirect('/login');
 });
 
