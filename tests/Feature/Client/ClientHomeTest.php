@@ -40,8 +40,9 @@ test('The Client home page can render the Competitions livewire component', func
     $competition = Competition::factory()->create([
         'client_id'=> $client->id,
         'released_at'=> now(),
+        'isPublic'=> 1, //true
     ]);
-    
+
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
     $component = Livewire::test(Competitions::class, [$client->id]);
@@ -49,6 +50,7 @@ test('The Client home page can render the Competitions livewire component', func
     $component->assertStatus(200)
     ->assertSee(['Competition Name', 'Date', 'Venu','type', 'Organiser'])
     ->assertSee($competition->display_name)
+    ->assertSee('(P)')
     ->assertSee($competition->comp_venu);
 });
 
