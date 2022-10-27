@@ -13,8 +13,8 @@
                                     <tr>
                                         <x-table.header>Name</x-table.header>
                                         <x-table.header>Email</x-table.header>
-                                        <x-table.header>Phone</x-table.header>
-                                        <x-table.header>asdada</x-table.header>
+                                        <x-table.header>Roles</x-table.header>
+                                        <x-table.header>Status</x-table.header>
                                         @can('update-user')
                                         <x-table.header>
                                             @can('create-user')
@@ -33,7 +33,7 @@
                                     <tr>
                                         <x-table.detail>{{ $user->name }}</x-table.detail>
                                         <x-table.detail>{{ $user->email }}</x-table.detail>
-                                        <x-table.detail>{{ $user->phone }}</x-table.detail>
+                                        <x-table.detail></x-table.detail>
                                         <x-table.detail></x-table.detail>
                                         @can('update-user')
                                         <x-table.detail>

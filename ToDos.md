@@ -1,10 +1,7 @@
-                        # Compscores ToDos
+# Compscores Todos
 
-                        ## Guest Can:
+## Client Users
+- A ClientAdmin can invite a user and assign roles for the specific client
+- A user can have many clients and clients many users ('client_user')
+    - How to assign roles per client
 
-                        * A Guest can view competitions marked as public on the home page
-
-
-                        ## ClientAdmin or ClientManager
-
-                        * The competition listing identifies if a competition is marked public

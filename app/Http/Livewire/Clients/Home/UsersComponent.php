@@ -8,6 +8,7 @@ use Livewire\Component;
 class UsersComponent extends Component
 {
     public $client_users = [];
+
     public bool $modalFormVisible;
 
     public function mount($client)
