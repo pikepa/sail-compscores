@@ -32,7 +32,7 @@ test('A guest cannot access the my Client page directly', function () {
     $this->get('/client/home/'.$client->id)->assertRedirect('/login');
 });
 
-test('The Client home page can render the Competitions livewire component', function () {
+test('The Client home page can render the Competitions livewire componentand display records', function () {
     //Arrange
     $client = Client::factory()
         ->has(User::factory())
@@ -54,12 +54,24 @@ test('The Client home page can render the Competitions livewire component', func
     ->assertSee($competition->comp_venu);
 });
 
-test('The Client home page can render the Users livewire component', function () {
+test('The Client home page can render the Users livewire component and display records', function () {
     // Create an Client for which we
     // want to look at Users
-    $client = Client::factory()->create();
+    $client = Client::factory()
+        ->has(User::factory())
+        ->create();
+
+    $client_user = User::factory()->create([
+            'client_id' => $client->id,
+        ]);
+    
+    loginAsUser($client->user)->assignRole('ClientAdmin');
 
     $component = Livewire::test(UsersComponent::class, [$client->id]);
 
-    $component->assertStatus(200);
+    $component->assertStatus(200)
+    ->assertSee(['Name', 'Email', 'Phone'])
+    ->assertSee($client_user->name)
+    ->assertSee($client_user->email)
+    ->assertSee($client_user->phone);
 });

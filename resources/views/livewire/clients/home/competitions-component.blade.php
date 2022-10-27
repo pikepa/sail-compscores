@@ -35,7 +35,7 @@
                                         <x-table.detail>{{ $comp->formatted_date }}</x-table.detail>
                                         <x-table.detail>
 
-                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $comp->comp_name
+                                            <a href="#" class="text-indigo-600 hover:text-indigo-900">{{ $comp->display_name
                                                 }}<span class="sr-only">, {{ $comp->display_name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $comp->comp_venu }}</x-table.detail>
