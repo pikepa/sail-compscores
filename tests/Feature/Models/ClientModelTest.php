@@ -1,20 +1,20 @@
 <?php
 
-use App\Models\User;
 use App\Models\Client;
-use App\Models\Invitee;
 use App\Models\Competition;
+use App\Models\Invitee;
+use App\Models\User;
 
 uses()->group('models');
 
-    it('belongs to a User', function () {
-        $client = Client::factory()
-        ->has(User::factory())
-        ->create();
+it('belongs to a User', function () {
+    $client = Client::factory()
+    ->has(User::factory())
+    ->create();
 
-        expect($client->user)
-            ->toBeInstanceOf(User::class);  
-    });
+    expect($client->user)
+        ->toBeInstanceOf(User::class);
+});
 
 it('has many competitions', function () {
     $client = Client::factory()

@@ -5,7 +5,6 @@ use App\Models\User;
 use Livewire\Livewire;
 
 test('A SuperAdmin user can create a Client', function () {
-
     // Create SuperAdmin user
     loginAsUser()->assignRole('SuperAdmin');
 
@@ -23,7 +22,6 @@ test('A SuperAdmin user can create a Client', function () {
 });
 
 test('An authenticated User with "create-client" permission can create an Organisation ', function () {
-
     // Create an authorised user with permission
     loginAsUser()->givePermissionTo('create-client');
 
@@ -41,7 +39,6 @@ test('An authenticated User with "create-client" permission can create an Organi
 });
 
 test('An authenticated User without specific permission can not create an Organisation ', function () {
-
     // Create SuperAdmin user
     loginAsUser();
 

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Event;
 use App\Models\Athlete;
 use App\Models\Competition;
+use App\Models\Event;
 
 uses()->group('models');
 

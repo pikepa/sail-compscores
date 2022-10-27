@@ -27,10 +27,10 @@ class ManageClients extends Component
     {
         if (Auth::user()->hasRole('SuperAdmin')) {
             return view('livewire.clients.manage-clients',
-            ['clients' => Client::orderBy('name')->paginate(6)]);
+                ['clients' => Client::orderBy('name')->paginate(6)]);
         } else {
             return view('livewire.clients.manage-clients',
-            ['clients' => Client::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);
+                ['clients' => Client::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);
         }
     }
 

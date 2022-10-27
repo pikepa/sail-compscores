@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Clients\Home;
 use App\Models\Competition;
 use Livewire\Component;
 
-class Competitions extends Component
+class CompetitionsComponent extends Component
 {
     public $comps = [];
 
@@ -21,6 +21,6 @@ class Competitions extends Component
 
     public function render()
     {
-        return view('livewire.clients.home.competitions');
+        return view('livewire.clients.home.competitions-component');
     }
 }

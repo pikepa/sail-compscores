@@ -5,7 +5,6 @@ use App\Models\User;
 
 uses()->group('models');
 
-
 it('has many clients', function () {
     $user = User::factory()
         ->has(Client::factory()->count(2))
@@ -25,5 +24,3 @@ it('has many client_users', function () {
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Client::class);
 });
-
-

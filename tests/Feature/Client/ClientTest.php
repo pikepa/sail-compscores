@@ -6,7 +6,7 @@ use App\Models\User;
 test('An authorised user can view their Organisations', function () {
     //Arrange
     $client = Client::factory()
-        ->has(User::factory())  
+        ->has(User::factory())
         ->create();
 
     //Act & Assert
@@ -21,12 +21,11 @@ test('An authorised user can view their Organisations', function () {
 });
 
 test('A SuperAdmin user can view any Organisation', function () {
-    
     //Arrange
     $client = Client::factory()
-        ->has(User::factory())  
+        ->has(User::factory())
         ->create();
-        
+
     //Act & Assert
     $user = loginAsUser()->assignRole('SuperAdmin');
 

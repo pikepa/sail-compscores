@@ -10,8 +10,8 @@ it('belongs to a Client', function () {
     $invitee = Invitee::factory()
     ->has(Client::factory())
     ->create();
-    
+
     //Act & Assert
     expect($invitee->client)
-        ->toBeInstanceOf(Client::class);  
+        ->toBeInstanceOf(Client::class);
 });
