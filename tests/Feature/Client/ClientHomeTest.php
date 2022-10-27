@@ -48,7 +48,7 @@ test('The Client home page can render the Competitions livewire componentand dis
     $component = Livewire::test(CompetitionsComponent::class, [$client->id]);
 
     $component->assertStatus(200)
-    ->assertSee(['Competition Name', 'Date', 'Venu', 'type', 'Organiser'])
+    ->assertSee(['Competition Name', 'Date', 'Venu', 'Type', 'Events'])
     ->assertSee($competition->display_name)
     ->assertSee('(P)')
     ->assertSee($competition->comp_venu);

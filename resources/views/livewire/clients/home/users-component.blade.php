@@ -14,6 +14,7 @@
                                         <x-table.header>Name</x-table.header>
                                         <x-table.header>Email</x-table.header>
                                         <x-table.header>Phone</x-table.header>
+                                        <x-table.header>asdada</x-table.header>
                                         @can('update-user')
                                         <x-table.header>
                                             @can('create-user')
@@ -33,6 +34,7 @@
                                         <x-table.detail>{{ $user->name }}</x-table.detail>
                                         <x-table.detail>{{ $user->email }}</x-table.detail>
                                         <x-table.detail>{{ $user->phone }}</x-table.detail>
+                                        <x-table.detail></x-table.detail>
                                         @can('update-user')
                                         <x-table.detail>
                                             <div class="flex flex-row justify-around">

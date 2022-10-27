@@ -38,7 +38,7 @@ test('It shows only released competitions', function () {
     ->create();
     // set up two competitions one released one not
     $releasedComp = Competition::factory()->released()->create(['client_id' => $client->id]);
-    $unreleasedComp = Competition::factory()->create(['client_id' => $client->id]);
+    $unreleasedComp = Competition::factory()->create(['client_id' => $client->id, 'released_at' => null]);
 
     //Act and assert
     loginAsUser();
@@ -90,7 +90,7 @@ it('only returns released competitions for released scope', function () {
     ->create();
     // set up two competitions one released one not
     $releasedComp = Competition::factory()->released()->create(['client_id' => $client->id]);
-    Competition::factory()->create(['client_id' => $client->id]);
+    Competition::factory()->create(['client_id' => $client->id, 'released_at' => null]);
 
     //Act and assert
     loginAsUser();
