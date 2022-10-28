@@ -17,10 +17,14 @@ it('belongs to a User', function () {
 });
 
 it('has many competitions', function () {
+    //Arrange
     $client = Client::factory()
         ->has(Competition::factory()->count(2))
         ->create();
+    //Set up the session to allow the scope to act.
+    $this->session(['CLIENT_ID' => $client->id]);
 
+    //Act & Assert
     expect($client->competitions)
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Competition::class);

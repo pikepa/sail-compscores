@@ -1,13 +1,17 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Clients\HomePage;
+use App\Http\Livewire\Users\InviteNewUsers;
 use App\Http\Livewire\Clients\ManageClients;
 use App\Http\Livewire\Results\ManageResults;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.welcome');
 })->name('welcome');
+Route::get('/not-authorised', function () {
+    return view('pages.NotAuthorised');
+})->name('not-authorised');
 Route::get('/profile', function () {
     return view('pages.profile');
 })->name('profile');
@@ -15,6 +19,7 @@ Route::get('/profile', function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/client/home/{id}', HomePage::class)->name('client-home');
     Route::get('/client', ManageClients::class)->name('clients');
+    Route::get('/client/invite', InviteNewUsers::class)->name('user.invite');
     Route::get('/competitions', ManageClients::class)->name('competitions');
     Route::get('/events', ManageClients::class)->name('events');
 

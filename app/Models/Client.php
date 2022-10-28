@@ -21,7 +21,7 @@ class Client extends Model
 
     public function client_users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'client_users')
+        return $this->belongsToMany(User::class, 'client_users','client_id', 'user_id')
         ->withTimestamps();
     }
 

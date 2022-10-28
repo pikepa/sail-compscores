@@ -11,6 +11,7 @@ class HomePage extends Component
 
     public function mount($id)
     {
+        session(['CLIENT_ID' => $id]);
         $this->client = Client::find($id);
         session(['APP_PAGE_TITLE' => $this->client->name]);
     }

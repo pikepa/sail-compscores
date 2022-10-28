@@ -37,6 +37,9 @@ test('The Client home page can render the Competitions livewire component and di
     $client = Client::factory()
         ->has(User::factory())
         ->create();
+    //Set up the session to allow the scope to act.
+    $this->session(['CLIENT_ID' => $client->id]);
+    
     $competition = Competition::factory()->create([
         'client_id' => $client->id,
         'released_at' => now(),
@@ -63,6 +66,7 @@ test('The Client home page can render the Users livewire component and display r
     $client_user = User::factory()->create([
         'client_id' => $client->id,
     ]);
+
     // Act & Assert
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
@@ -74,4 +78,4 @@ test('The Client home page can render the Users livewire component and display r
     ->assertSee($client_user->email);
     // ->assertSee($client_user->roles)
     // ->assertSee($client_user->status);
-})->skip('Update to User Roles needed');
+});

@@ -14,7 +14,7 @@ class CompetitionsComponent extends Component
     public function mount($client)
     {
         $this->comps = Competition::query()
-        ->where('client_id', $client)
+       // GlobalScope to Client ->where('client_id', $client)
         ->released()
         ->orderByDesc('start_date')->get();
     }

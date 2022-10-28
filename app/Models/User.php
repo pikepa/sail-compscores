@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function client_users(): BelongsToMany
     {
-        return $this->belongsToMany(Client::class, 'client_users')
+        return $this->belongsToMany(Client::class, 'client_users', 'user_id', 'client_id')
         ->withTimestamps();
     }
 }
