@@ -14,6 +14,11 @@ class Client extends Model
 
     protected $guarded = [];
 
+    public function scopeThisClients($query)
+    {
+        return $query->where('client_id', session('CLIENT_ID'));
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');

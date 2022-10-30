@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\ClientScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -20,16 +19,6 @@ class Competition extends Model
         'start_date',
         'released_at',
     ];
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        //Applies a specific client to all searches
-        static::addGlobalScope(new ClientScope);
-    }
 
     public function scopeReleased(Builder $query): Builder
     {
