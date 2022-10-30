@@ -20,6 +20,11 @@ class Competition extends Model
         'released_at',
     ];
 
+    public function scopeForSessionClient($query)
+    {
+        $query->where('client_id', session('CLIENT_ID'));
+    }
+
     public function scopeReleased(Builder $query): Builder
     {
         return $query->whereNotNull('released_at');

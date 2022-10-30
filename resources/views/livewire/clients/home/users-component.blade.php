@@ -33,7 +33,7 @@
                                     <tr>
                                         <x-table.detail>{{ $user->name }}</x-table.detail>
                                         <x-table.detail>{{ $user->email }}</x-table.detail>
-                                        <x-table.detail></x-table.detail>
+                                        <x-table.detail>{{ $user->created_at }}</x-table.detail>
                                         <x-table.detail></x-table.detail>
                                         @can('update-user')
                                         <x-table.detail>

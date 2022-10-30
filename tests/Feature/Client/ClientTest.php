@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Client;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Competition;
 
 test('An authorised user can view their Organisations', function () {
     //Arrange
@@ -36,4 +37,17 @@ test('A SuperAdmin user can view any Organisation', function () {
     ->assertSee($client->contact_email);
 
     $this->assertFalse($user->id == $client->owner_id);
+});
+
+it('returns only competitions belonging to this client', function(){
+    $client= Client::factory()
+        ->has(Competition::factory()->count(3))
+        ->create();
+    
+    Competition::factory()->count(10)->create();
+    expect(Competition::all()) 
+        ->tohaveCount(13);
+
+    expect($client->competitions)
+        ->toHaveCount(3);
 });

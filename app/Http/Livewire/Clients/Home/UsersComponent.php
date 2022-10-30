@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Clients\Home;
 
 use App\Models\User;
+use App\Models\Client;
 use Livewire\Component;
 
 class UsersComponent extends Component
@@ -11,11 +12,11 @@ class UsersComponent extends Component
 
     public bool $modalFormVisible;
 
-    public function mount($client)
+    public function mount()
     {
-        $this->client_users = User::query()
-        ->where('client_id', $client)
-        ->orderByDesc('created_at')->get();
+    $this->client_users =Client::find(session('CLIENT_ID'))
+            ->client_users;
+         //   ->orderByDesc('created_at');
     }
 
     public function render()

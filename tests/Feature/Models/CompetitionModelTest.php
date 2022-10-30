@@ -34,4 +34,16 @@ it('has many athlete_competitions', function () {
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Competition::class);
 });
+
+it('returns only competitions belonging to this client', function(){
+    $client= Client::factory()
+        ->has(Competition::factory()->count(3))
+        ->create();
     
+    Competition::factory()->count(10)->create();
+    expect(Competition::all()) 
+        ->tohaveCount(13);
+
+    expect($client->competitions)
+        ->toHaveCount(3);
+});

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\Clients\Home\Competitions;
 use App\Http\Livewire\Clients\Home\CompetitionsComponent;
 use App\Models\Client;
 use App\Models\Competition;
@@ -24,7 +23,7 @@ test('A ClientAdmin can display the competitions page', function () {
     //Act & Assert
     loginAsUser()->assignRole('ClientAdmin');
 
-    Livewire::test(CompetitionsComponent::class, [$this->client->id])
+    Livewire::test(CompetitionsComponent::class)
         ->assertSee('Date')
         ->assertSee('Competition Name')
         ->assertSee('Venu')
@@ -40,7 +39,7 @@ test('It shows only released competitions', function () {
 
     //Act and assert
     loginAsUser();
-    Livewire::test(CompetitionsComponent::class, [$this->client->id])
+    Livewire::test(CompetitionsComponent::class)
         ->assertSeeText($releasedComp->comp_name)
         ->assertDontSeeText($unreleasedComp->comp_name);
 });
@@ -53,7 +52,7 @@ test('it shows competitions by start date descending', function () {
     //Act and assert
     loginAsUser();
 
-    Livewire::test(CompetitionsComponent::class, [$this->client->id])
+    Livewire::test(CompetitionsComponent::class)
         ->assertSeeTextInOrder([
             $lastComp->comp_name,
             $earliestComp->comp_name,
@@ -66,21 +65,20 @@ test('a competition is identified as public when displaying the name', function 
 
     //Act & Assert
     loginAsUser();
-    Livewire::test(CompetitionsComponent::class, [$this->client->id])
+    Livewire::test(CompetitionsComponent::class)
     ->assertSeeText([
         $publicComp->comp_name.' (P)',
     ]);
     //expect()->
 });
 
-it('only returns released competitions for released scope', function () {
-    // set up two competitions one released one not
-    $releasedComp = Competition::factory()->released()->create(['client_id' => $this->client->id]);
-    Competition::factory()->create(['client_id' => $this->client->id, 'released_at' => null]);
+it('only returns competitions "forsessionclient" scope', function () {
+    // set up two set of competitions one for client adn 20 not
+    $compsforClientA = Competition::factory()->released()->create(['client_id' => $this->client->id]);
+    Competition::factory()->released()->count(20)->create();
 
     //Act and assert
     loginAsUser();
-    expect(Competition::released()->get())
-    ->toHaveCount(1)
-    ->first()->id->toEqual($releasedComp->id);
+    Livewire::test(CompetitionsComponent::class)
+        ->assertSeeText($compsforClientA->comp_name);
 });

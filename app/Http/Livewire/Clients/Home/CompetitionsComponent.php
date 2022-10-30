@@ -11,10 +11,10 @@ class CompetitionsComponent extends Component
 
     public bool $modalFormVisible;
 
-    public function mount($client)
+    public function mount()
     {
         $this->comps = Competition::query()
-       // GlobalScope to Client ->where('client_id', $client)
+        ->forsessionclient()
         ->released()
         ->orderByDesc('start_date')->get();
     }

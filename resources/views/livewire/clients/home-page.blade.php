@@ -14,13 +14,13 @@
                     <div>
                         @can('read-comp')
                         <h1 class="text-2xl font-semibold text-indigo-700">Our Competitions</h1>
-                        <livewire:clients.home.competitions-component :client="$client->id" />
+                        <livewire:clients.home.competitions-component />
                         @endcan
                     </div>
                     <div class="mt-6 border-t-gray-300">
                         @can('read-user')
                         <h1 class="text-2xl font-semibold text-indigo-700">Our Users</h1>
-                        <livewire:clients.home.users-component :client="$client->id" />
+                        <livewire:clients.home.users-component />
                         @endcan
                     </div>
                 </div>

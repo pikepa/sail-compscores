@@ -22,7 +22,7 @@ test('A client admin can see the client Home page', function () {
         ->assertSee($client->name);
 });
 
-test('A guest cannot access the my Client page directly', function () {
+test('A guest cannot access the my Client home page directly', function () {
     //Arrange
     $client = Client::factory()
         ->has(User::factory())
@@ -48,7 +48,7 @@ test('The Client home page can render the Competitions livewire component and di
 
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
-    $component = Livewire::test(CompetitionsComponent::class, [$client->id]);
+    $component = Livewire::test(CompetitionsComponent::class);
 
     $component->assertStatus(200)
     ->assertSee(['Competition Name', 'Date', 'Venu', 'Type', 'Events'])
@@ -62,20 +62,28 @@ test('The Client home page can render the Users livewire component and display r
     $client = Client::factory()
         ->has(User::factory())
         ->create();
-    // Create a client User to list for this client
-    $client_user = User::factory()->create([
+
+    //Set up the session to allow the scope to act.
+    $this->session(['CLIENT_ID' => $client->id]);
+
+    // Create a client User to list for this client and attach to client
+    $created_user = User::factory()->create([
         'client_id' => $client->id,
     ]);
+    
+    $client->client_users()->attach([ $created_user->id]);
+
+  
 
     // Act & Assert
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
-    $component = Livewire::test(UsersComponent::class, [$client->id]);
+    $component = Livewire::test(UsersComponent::class);
 
     $component->assertStatus(200)
     ->assertSee(['Name', 'Email', 'Roles', 'Status'])
-    ->assertSee($client_user->name)
-    ->assertSee($client_user->email);
+    ->assertSee($created_user->name)
+    ->assertSee($created_user->email);
     // ->assertSee($client_user->roles)
     // ->assertSee($client_user->status);
 });
