@@ -16,7 +16,7 @@ beforeEach(function () {
     ->has(User::factory())
     ->create();
     //Set up the session to allow the scope to act.
-    $this->session(['CLIENT_ID' => $this->client->id]); 
+    $this->session(['CLIENT_ID' => $this->client->id]);
 });
 
 test('A ClientAdmin can display the competitions page', function () {
@@ -32,7 +32,6 @@ test('A ClientAdmin can display the competitions page', function () {
 });
 
 test('It shows only released competitions', function () {
-
     // set up two competitions one released one not
     $releasedComp = Competition::factory()->released()->create(['client_id' => $this->client->id]);
     $unreleasedComp = Competition::factory()->create(['client_id' => $this->client->id, 'released_at' => null]);

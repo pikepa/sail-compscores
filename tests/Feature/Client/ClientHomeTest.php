@@ -39,7 +39,7 @@ test('The Client home page can render the Competitions livewire component and di
         ->create();
     //Set up the session to allow the scope to act.
     $this->session(['CLIENT_ID' => $client->id]);
-    
+
     $competition = Competition::factory()->create([
         'client_id' => $client->id,
         'released_at' => now(),
@@ -70,10 +70,8 @@ test('The Client home page can render the Users livewire component and display r
     $created_user = User::factory()->create([
         'client_id' => $client->id,
     ]);
-    
-    $client->client_users()->attach([ $created_user->id]);
 
-  
+    $client->client_users()->attach([$created_user->id]);
 
     // Act & Assert
     loginAsUser($client->user)->assignRole('ClientAdmin');

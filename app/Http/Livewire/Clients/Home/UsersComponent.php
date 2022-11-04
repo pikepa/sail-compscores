@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Clients\Home;
 
-use App\Models\User;
 use App\Models\Client;
 use Livewire\Component;
 
@@ -14,9 +13,9 @@ class UsersComponent extends Component
 
     public function mount()
     {
-    $this->client_users =Client::find(session('CLIENT_ID'))
-            ->client_users;
-         //   ->orderByDesc('created_at');
+        $this->client_users = Client::find(session('CLIENT_ID'))
+                ->client_users;
+        //   ->orderByDesc('created_at');
     }
 
     public function render()

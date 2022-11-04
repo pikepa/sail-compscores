@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Event;
-use App\Models\Client;
 use App\Models\Athlete;
+use App\Models\Client;
 use App\Models\Competition;
+use App\Models\Event;
 
 uses()->group('models');
 
@@ -11,7 +11,7 @@ it('belongs to a client', function () {
     $competition = Competition::factory()
      ->has(Client::factory())
      ->create();
- 
+
     expect($competition->client)->toBeInstanceOf(Client::class);
 });
 
@@ -26,7 +26,6 @@ it('has many events', function () {
 });
 
 it('has many athlete_competitions', function () {
-
     $athlete = Athlete::factory()
         ->has(Competition::factory()->count(2), 'athlete_competitions')
         ->create();
@@ -35,13 +34,13 @@ it('has many athlete_competitions', function () {
         ->each->toBeInstanceOf(Competition::class);
 });
 
-it('returns only competitions belonging to this client', function(){
-    $client= Client::factory()
+it('returns only competitions belonging to this client', function () {
+    $client = Client::factory()
         ->has(Competition::factory()->count(3))
         ->create();
-    
+
     Competition::factory()->count(10)->create();
-    expect(Competition::all()) 
+    expect(Competition::all())
         ->tohaveCount(13);
 
     expect($client->competitions)

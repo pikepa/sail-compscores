@@ -10,7 +10,7 @@ it('belongs to a competition', function () {
     $event = Event::factory()
      ->has(Competition::factory())
      ->create();
-  
+
     expect($event->competition)->toBeInstanceOf(Competition::class);
 });
 
