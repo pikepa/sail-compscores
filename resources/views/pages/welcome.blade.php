@@ -12,8 +12,9 @@
         @endif
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-blue-800">
-            <div class="flex justify-center">
-                <h1 class=" text-5xl  font-extrabold">CompScores</h1>
+            <div class="p-5 flex justify-center">
+                <x-application-logo />
+                <!-- <h1 class=" text-5xl  font-extrabold">CompScores</h1> -->
             </div>
             <div class="flex text-center justify-center text-xl ">
                 The complete management system for all your Crossfit Competitions

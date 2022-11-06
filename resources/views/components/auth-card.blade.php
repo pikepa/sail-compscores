@@ -1,4 +1,4 @@
-<div class="min-h-screen flex flex-col  items-center pt-6 sm:pt-0 bg-gray-100">
+<div class="pt-20 min-h-screen flex flex-col  items-center  sm:pt-20 bg-gray-100">
     @isset($logo)
         <div>
             {{ $logo }}

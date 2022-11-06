@@ -3,13 +3,12 @@
 namespace App\Http\Livewire\Clients\Home;
 
 use App\Models\Competition;
-use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class CompetitionsComponent extends Component
+class CompetitionsComponent extends ModalComponent
 {
+    public $displayForm=false;
     public $comps = [];
-
-    public bool $modalFormVisible;
 
     public function mount()
     {

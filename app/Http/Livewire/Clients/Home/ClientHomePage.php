@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Clients;
+namespace App\Http\Livewire\Clients\Home;
 
 use App\Models\Client;
-use Livewire\Component;
 
-class HomePage extends Component
+use LivewireUI\Modal\ModalComponent;
+
+class ClientHomePage extends ModalComponent
 {
     public $client;
 
@@ -18,6 +19,6 @@ class HomePage extends Component
 
     public function render()
     {
-        return view('livewire.clients.home-page');
+        return view('livewire.clients.home.client-home-page');
     }
 }
