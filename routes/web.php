@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Clients\Home\ClientHomePage;
-use App\Http\Livewire\Users\InviteNewUsers;
 use App\Http\Livewire\Clients\ManageClients;
 use App\Http\Livewire\Results\ManageResults;
+use App\Http\Livewire\Users\InviteNewUsers;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.welcome');

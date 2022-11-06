@@ -11,13 +11,9 @@ class CompetitionsComponentForm extends ModalComponent
     {
         return 'xl';
     }
-    
 
     public function render()
     {
         return view('livewire.clients.home.competitions-component-form');
     }
-
-
-
 }

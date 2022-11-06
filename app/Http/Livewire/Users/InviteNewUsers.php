@@ -19,8 +19,8 @@ class InviteNewUsers extends Component
         }
     }
 
-       public function render()
-       {
-           return view('livewire.users.invite-new-users');
-       }
+    public function render()
+    {
+        return view('livewire.users.invite-new-users');
+    }
 }

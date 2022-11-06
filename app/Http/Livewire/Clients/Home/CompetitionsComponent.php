@@ -7,7 +7,8 @@ use LivewireUI\Modal\ModalComponent;
 
 class CompetitionsComponent extends ModalComponent
 {
-    public $displayForm=false;
+    public $displayForm = false;
+
     public $comps = [];
 
     public function mount()

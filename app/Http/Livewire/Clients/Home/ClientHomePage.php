@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Clients\Home;
 
 use App\Models\Client;
-
 use LivewireUI\Modal\ModalComponent;
 
 class ClientHomePage extends ModalComponent
