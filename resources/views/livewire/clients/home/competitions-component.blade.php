@@ -44,7 +44,7 @@
                                                     $comp->display_name
                                                     }}<span class="sr-only">, {{ $comp->display_name }} </span></a>
                                             </x-table.detail>
-                                            <x-table.detail>{{ $comp->comp_venu }}</x-table.detail>
+                                            <x-table.detail>{{ $comp->comp_venue }}</x-table.detail>
                                             <x-table.detail>{{ $comp->comp_type }}</x-table.detail>
                                             <x-table.detail>{{ $comp->contact_phone }}</x-table.detail>
                                         </div>

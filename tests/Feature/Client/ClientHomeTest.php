@@ -46,6 +46,7 @@ test('The Client home page can render the Competitions livewire component and di
         'isPublic' => 1, //true
     ]);
 
+
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
     $component = Livewire::test(CompetitionsComponent::class);

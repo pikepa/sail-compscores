@@ -13,6 +13,11 @@ class CompetitionsComponent extends ModalComponent
 
     public function mount()
     {
+        if(!session('CLIENT_ID')){
+            session(['CLIENT_ID' => request()->id]);
+        }
+// dd(session('CLIENT_ID'));
+
         $this->comps = Competition::query()
         ->forsessionclient()
         ->released()
@@ -23,4 +28,5 @@ class CompetitionsComponent extends ModalComponent
     {
         return view('livewire.clients.home.competitions-component');
     }
+
 }

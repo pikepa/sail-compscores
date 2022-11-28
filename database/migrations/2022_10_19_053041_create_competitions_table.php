@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->string('comp_name');
-            $table->string('comp_venu');
+            $table->string('comp_venue');
             $table->string('contact_phone')->nullable();
 
             $table->string('comp_type')->required();

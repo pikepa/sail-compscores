@@ -20,7 +20,7 @@ class CompetitionFactory extends Factory
     {
         return [
             'comp_name' => fake()->lastName(),
-            'comp_venu' => fake()->userName(),
+            'comp_venue' => fake()->userName(),
             'comp_type' => fake()->country(),
             'client_id' => Client::factory()->create()->id,
             'start_date' => fake()->dateTimeBetween('-10 week', '-1 week'),
