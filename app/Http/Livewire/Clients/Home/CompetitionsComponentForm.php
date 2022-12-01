@@ -14,6 +14,7 @@ class CompetitionsComponentForm extends ModalComponent
     public $comp_venue = '';
 
     public $start_date;
+
     public $released_at;
 
     public $comp_type = 'Individual';
@@ -72,7 +73,6 @@ class CompetitionsComponentForm extends ModalComponent
         return redirect(request()->header('Referer'));
 
         $this->closeModal();
-
     }
 
     public function updateComp($id)
@@ -94,8 +94,6 @@ class CompetitionsComponentForm extends ModalComponent
 
         $this->closeModal();
     }
-
-
 
     public function render()
     {
