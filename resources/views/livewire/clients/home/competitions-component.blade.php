@@ -35,7 +35,7 @@
 
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
                                     @foreach($comps as $comp)
-                                    <tr>
+                                    <tr wire:key="comp-{{ $comp->id }}">
                                         <div>
                                             <x-table.detail>{{ $comp->formatted_date }}</x-table.detail>
                                             <x-table.detail>
@@ -49,10 +49,10 @@
                                             <x-table.detail>{{ $comp->contact_phone }}</x-table.detail>
                                         </div>
                                         <div>
-                                            @can('update-org')
+                                            @can('update-comp')
                                             <x-table.detail>
                                                 <div class="flex flex-row justify-around">
-                                                    <button wire:click="editOrg('{{ $comp->id }}')" type="button"
+                                                    <button wire:click='$emit("openModal", "clients.home.competitions-component-form",@json(["id" => " $comp->id "]))' type="button"
                                                         class="text-indigo-600 text-center hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -62,8 +62,8 @@
                                                         </svg>
                                                     </button>
 
-                                                    @can('delete-org')
-                                                    <button wire:click="deleteOrg('{{ $comp->id }}')" type="button"
+                                                    @can('delete-comp')
+                                                    <button wire:click="destroyComp('{{ $comp->id }}')" type="button"
                                                         class="text-indigo-600 text-center hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

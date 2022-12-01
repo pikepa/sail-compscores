@@ -13,9 +13,11 @@ dataset('competition_validation', [
     'competition type is not a valid value ' => ['comp_type', 'this is not a valid entry', 'in'],
 
     'start Date is required' => ['start_date', null, 'required'],
-    'start Date must be a date' => ['start_date', 2022/01/33, 'date_format:y-m-d'],
+    'start Date must be a date' => ['start_date', 2022 / 01 / 33, 'date_format:Y-m-d'],
 
-        // 'client_id is required' => ['client_id', null, 'required'],
-        // 'client_id is an integer' => ['client_id', 'not an integer', 'integer'],
+    'client_id is required' => ['client_id', null, 'required'],
+
+    'isPublic is required' => ['isPublic', null, 'required'],
+    'isPublic is boolean' => ['isPublic', 'abc', 'boolean'],
 
 ]);

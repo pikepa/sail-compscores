@@ -13,7 +13,7 @@ test('A SuperAdmin user can create a Competition', function () {
     // Create a client
     $client = Client::factory()->create();
     // Set the Session CLIENT_ID
-    session(['CLIENT_ID' => $client->id ]);
+    session(['CLIENT_ID' => $client->id]);
 
     Livewire::test('clients.home.competitions-component-form')
         ->set('comp_name', 'Competition')
@@ -34,7 +34,7 @@ test('An authenticated User with "create-comp" permission can create a Competiti
     // Create a client
     $client = Client::factory()->create();
     // Set the Session CLIENT_ID
-    session(['CLIENT_ID' => $client->id ]);
+    session(['CLIENT_ID' => $client->id]);
 
     Livewire::test('clients.home.competitions-component-form')
         ->set('comp_name', 'Competition')
@@ -48,7 +48,6 @@ test('An authenticated User with "create-comp" permission can create a Competiti
     $this->assertTrue(Competition::whereCompName('Competition')->exists());
 });
 
-
 test('An authenticated User without specific permission can not create a Competition ', function () {
     // $this->withoutExceptionHandling();
     // Create a user without permissions
@@ -57,7 +56,7 @@ test('An authenticated User without specific permission can not create a Competi
     // Create a client
     $client = Client::factory()->create();
     // Set the Session CLIENT_ID
-    session(['CLIENT_ID' => $client->id ]);
+    session(['CLIENT_ID' => $client->id]);
 
     Livewire::test('clients.home.competitions-component-form')
         ->set('comp_name', 'Competition')

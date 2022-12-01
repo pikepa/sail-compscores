@@ -72,7 +72,7 @@ test('a competition is identified as public when displaying the name', function 
 });
 
 it('only returns competitions "forsessionclient" scope', function () {
-    // set up two set of competitions one for client adn 20 not
+    // set up two set of competitions one for client and 20 not
     $compsforClientA = Competition::factory()->released()->create(['client_id' => $this->client->id]);
     Competition::factory()->released()->count(20)->create();
 
@@ -81,3 +81,30 @@ it('only returns competitions "forsessionclient" scope', function () {
     Livewire::test(CompetitionsComponent::class)
         ->assertSeeText($compsforClientA->comp_name);
 });
+
+test('an authorised user can delete a competition', function () {
+    // set up a competition
+    $publicComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'isPublic' => 1]);
+    $this->assertDatabaseCount('competitions', 1);
+
+    //Act and assert
+    loginAsUser()->givePermissionTo('delete-comp');
+
+    Livewire::test(CompetitionsComponent::class)
+        ->call('destroyComp', $publicComp->id);
+    $this->assertDatabaseCount('competitions', 0);
+});
+
+test('when a competition is deleted so are all associated events', function () {
+    // set up a competition
+    $publicComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'isPublic' => 1]);
+    $this->assertDatabaseCount('competitions', 1);
+
+    //Act and assert
+    loginAsUser()->givePermissionTo('delete-comp');
+
+    Livewire::test(CompetitionsComponent::class)
+        ->call('destroyComp', $publicComp->id);
+    $this->assertDatabaseCount('competitions', 0);
+    $this->assertDatabaseCount('events', 0);
+})->skip();
