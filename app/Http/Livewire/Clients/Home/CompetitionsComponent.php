@@ -19,6 +19,7 @@ class CompetitionsComponent extends ModalComponent
             session(['CLIENT_ID' => request()->id]);
         }
         $this->comps = Competition::query()
+        ->with('events')
         ->forsessionclient()
         ->released()
         ->orderByDesc('start_date')->get();
@@ -33,7 +34,7 @@ class CompetitionsComponent extends ModalComponent
     {
         $this->checkAuthority('delete-comp');
 
-        $deleteComp = Competition::find($id);
+        $deleteComp = Competition::with('events')->find($id);
 
         $deleteComp->delete();
 

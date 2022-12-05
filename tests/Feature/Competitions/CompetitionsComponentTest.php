@@ -95,16 +95,35 @@ test('an authorised user can delete a competition', function () {
     $this->assertDatabaseCount('competitions', 0);
 });
 
+test('the competition component displays the number of events', function () {
+    // set up
+    $comp = Competition::factory()
+    ->released()
+    ->hasEvents(3)
+    ->create(['client_id' => $this->client->id, 'isPublic' => 1]);
+
+    // Act and Assert
+    $this->assertModelExists($comp);
+    $this->assertDatabaseCount('events', 3);
+
+    //Act & Assert
+    loginAsUser()->assignRole('ClientAdmin');
+    Livewire::test(CompetitionsComponent::class)
+    ->assertSee(['Events', '3']);
+});
+
 test('when a competition is deleted so are all associated events', function () {
-    // set up a competition
-    $publicComp = Competition::factory()->released()->create(['client_id' => $this->client->id, 'isPublic' => 1]);
-    $this->assertDatabaseCount('competitions', 1);
+    // set up
+    $comp = Competition::factory()
+    ->released()
+    ->hasEvents(3)
+    ->create(['client_id' => $this->client->id, 'isPublic' => 1]);
 
     //Act and assert
     loginAsUser()->givePermissionTo('delete-comp');
 
     Livewire::test(CompetitionsComponent::class)
-        ->call('destroyComp', $publicComp->id);
-    $this->assertDatabaseCount('competitions', 0);
+        ->call('destroyComp', $comp->id);
+    $this->assertModelMissing($comp);
     $this->assertDatabaseCount('events', 0);
-})->skip();
+});

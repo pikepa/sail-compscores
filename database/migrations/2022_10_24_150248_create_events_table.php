@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->text('event_name');
-            $table->foreignIdFor(Competition::class)->required();
+            $table->foreignIdFor(Competition::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

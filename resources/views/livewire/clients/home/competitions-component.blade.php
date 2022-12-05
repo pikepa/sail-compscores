@@ -46,7 +46,7 @@
                                             </x-table.detail>
                                             <x-table.detail>{{ $comp->comp_venue }}</x-table.detail>
                                             <x-table.detail>{{ $comp->comp_type }}</x-table.detail>
-                                            <x-table.detail>{{ $comp->contact_phone }}</x-table.detail>
+                                            <x-table.detail>{{ $comp->events()->count() }}</x-table.detail>
                                         </div>
                                         <div>
                                             @can('update-comp')
