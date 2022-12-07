@@ -1,5 +1,5 @@
 <div>
-    @section('title', 'Competitions')
+    @section('title', 'Events')
     <div>
         @if(! $displayForm)
 
@@ -12,17 +12,17 @@
                                 <thead class="bg-slate-300">
                                     <tr class="">
                                         <div>
-                                            <x-table.header>Date</x-table.header>
-                                            <x-table.header>Competition Name</x-table.header>
-                                            <x-table.header>Venu</x-table.header>
+                                            <x-table.header>Event Name</x-table.header>
+                                            <x-table.header>Event Date</x-table.header>
+                                            <x-table.header>Scheduled</x-table.header>
                                             <x-table.header>Type</x-table.header>
-                                            <x-table.header>Events</x-table.header>
+                                            <x-table.header>Status</x-table.header>
                                         </div>
                                         <div>
-                                            @can('update-comp')
+                                            @can('update-event')
                                             <x-table.header>
-                                                @can('create-comp')
-                                                <button wire:click="$emit('openModal', 'clients.home.competitions-component-form')"
+                                                @can('create-event')
+                                                <button wire:click="$emit('openModal', 'competitions.events-component-form')"
                                                     class="relative inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                                     Add New
                                                 </button>
@@ -34,25 +34,20 @@
                                 </thead>
 
                                 <tbody class="divide-y divide-slate-200 bg-slate-50">
-                                    @foreach($comps as $comp)
-                                    <tr wire:key="comp-{{ $comp->id }}">
+                                    @foreach($events as $event)
+                                    <tr wire:key="event-{{ $event->id }}">
                                         <div>
-                                            <x-table.detail>{{ $comp->formatted_date }}</x-table.detail>
-                                            <x-table.detail>
-
-                                                <a href="/client/competition/{{ $comp->id }}" class="text-indigo-600 hover:text-indigo-900">{{
-                                                    $comp->display_name
-                                                    }}<span class="sr-only">, {{ $comp->display_name }} </span></a>
-                                            </x-table.detail>
-                                            <x-table.detail>{{ $comp->comp_venue }}</x-table.detail>
-                                            <x-table.detail>{{ $comp->comp_type }}</x-table.detail>
-                                            <x-table.detail>{{ $comp->events()->count() }}</x-table.detail>
+                                            <x-table.detail>{{ $event->event_name }}</x-table.detail>
+                                            <x-table.detail>{{ $event->formatted_event_date }}</x-table.detail>
+                                            <x-table.detail>{{ $event->event_time }}</x-table.detail>
+                                            <x-table.detail>{{ $event->event_type }}</x-table.detail>
+                                            <x-table.detail>{{ $event->event_status }}</x-table.detail>
                                         </div>
                                         <div>
-                                            @can('update-comp')
+                                            @can('update-event')
                                             <x-table.detail>
                                                 <div class="flex flex-row justify-around">
-                                                    <button wire:click='$emit("openModal", "clients.home.competitions-component-form",@json(["id" => " $comp->id "]))' type="button"
+                                                    <button wire:click='$emit("openModal", "competitions.events-component-form",@json(["id" => " $event->id "]))' type="button"
                                                         class="text-indigo-600 text-center hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -63,7 +58,7 @@
                                                     </button>
 
                                                     @can('delete-comp')
-                                                    <button wire:click="destroyComp('{{ $comp->id }}')" type="button"
+                                                    <button wire:click="destroyEvent('{{ $event->id }}')" type="button"
                                                         class="text-indigo-600 text-center hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

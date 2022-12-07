@@ -63,7 +63,8 @@ class RolesAndPermissionSeeder extends Seeder
             'read-role', 'read-permission',
             'read-user', 'invite-user',
             'read-client', 'update-client', 'publish-client',
-            'create-comp', 'read-comp', 'update-comp', 'delete-comp', 'publish-comp', ]);
+            'create-comp', 'read-comp', 'update-comp', 'delete-comp', 'publish-comp', 
+            'create-event', 'read-event', 'update-event', 'delete-event', 'publish-event', ]);
 
         // or may be done by chaining
         $role = Role::create(['name' => 'CompManager'])

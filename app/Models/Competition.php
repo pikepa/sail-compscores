@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Competition extends Model
 {
@@ -34,9 +35,17 @@ class Competition extends Model
 
     public function getFormattedDateAttribute()
     {
-        $date = $this->start_date->format('D, d M Y');
+        if(Carbon::now()->format('Y') == $this->start_date->format('Y'))
+        {
+            $date = $this->start_date->format('D, jS M');
 
-        return $date;
+            return $date;  
+        }
+        else{
+            $date = $this->start_date->format('D, jS M y');
+
+            return $date;
+        }
     }
 
     public function getDisplayNameAttribute()

@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Livewire\Clients\Home\ClientHomePage;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Users\InviteNewUsers;
 use App\Http\Livewire\Clients\ManageClients;
 use App\Http\Livewire\Results\ManageResults;
-use App\Http\Livewire\Users\InviteNewUsers;
-use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Clients\Home\ClientHomePage;
+use App\Http\Livewire\Competitions\CompetitionDetail;
 
 Route::get('/', function () {
     return view('pages.welcome');
@@ -17,6 +18,7 @@ Route::get('/profile', function () {
 })->name('profile');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/client/competition/{id}', CompetitionDetail::class)->name('client-competition');
     Route::get('/client/home/{id}', ClientHomePage::class)->name('client-home');
     Route::get('/client', ManageClients::class)->name('clients');
     Route::get('/client/invite', InviteNewUsers::class)->name('user.invite');

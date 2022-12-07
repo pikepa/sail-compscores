@@ -20,8 +20,8 @@ class CompetitionFactory extends Factory
     public function definition()
     {
         return [
-            'comp_name' => fake()->lastName(),
-            'comp_venue' => fake()->userName(),
+            'comp_name' => fake()->sentence(3),
+            'comp_venue' => fake()->sentence(2),
             'comp_type' => Arr::random(['Individual', 'Teams']),
             'client_id' => Client::factory()->create()->id,
             'start_date' => fake()->dateTimeBetween('-10 week', '-1 week'),
