@@ -36,9 +36,10 @@
                 </select>
             <x-input-error :messages="$errors->get('event_type')"></x-input-error>
         </div>
+
         <div>
             <x-input-label class="text-indigo-700 mt-2 font-bold">Date</x-input-label>
-            <x-text-input wire:model='event_date' class="mt-2 w-full px-4 py-2" placeholder="Enter the event date.">
+            <x-text-input  wire:model='event_date'  class="mt-2 w-full px-4 py-2" placeholder="Enter the event date.">
             </x-text-input>
             <x-input-error :messages="$errors->get('event_date')"></x-input-error>
         </div>

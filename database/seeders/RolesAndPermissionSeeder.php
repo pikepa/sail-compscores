@@ -51,6 +51,12 @@ class RolesAndPermissionSeeder extends Seeder
         Permission::create(['name' => 'delete-event']);
         Permission::create(['name' => 'publish-event']);
 
+        Permission::create(['name' => 'create-competitor']);
+        Permission::create(['name' => 'read-competitor']);
+        Permission::create(['name' => 'update-competitor']);
+        Permission::create(['name' => 'delete-competitor']);
+        Permission::create(['name' => 'publish-competitor']);
+
         // create roles and assign created permissions
 
         // this can be done as separate statements
@@ -63,8 +69,9 @@ class RolesAndPermissionSeeder extends Seeder
             'read-role', 'read-permission',
             'read-user', 'invite-user',
             'read-client', 'update-client', 'publish-client',
-            'create-comp', 'read-comp', 'update-comp', 'delete-comp', 'publish-comp', 
-            'create-event', 'read-event', 'update-event', 'delete-event', 'publish-event', ]);
+            'create-comp', 'read-comp', 'update-comp', 'delete-comp', 'publish-comp',
+            'create-event', 'read-event', 'update-event', 'delete-event', 'publish-event',
+            'create-competitor', 'read-competitor', 'update-competitor', 'delete-competitor', ]);
 
         // or may be done by chaining
         $role = Role::create(['name' => 'CompManager'])

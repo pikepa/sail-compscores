@@ -2,13 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Competitor;
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Athlete>
- */
-class AthleteFactory extends Factory
+class CompetitorEventFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,6 +17,7 @@ class AthleteFactory extends Factory
     {
         return [
             'event_id' => Event::factory()->create()->id,
+            'competitor_id' => Competitor::factory()->create()->id,
         ];
     }
 }

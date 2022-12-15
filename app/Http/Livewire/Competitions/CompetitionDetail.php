@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Competitions;
 
-use Livewire\Component;
 use App\Models\Competition;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class CompetitionDetail extends Component
 {
@@ -16,6 +16,7 @@ class CompetitionDetail extends Component
 
         $this->comp = Competition::find($id);
         session(['APP_COMP_TITLE' => $this->comp->comp_name]);
+        session(['COMP_ID' => $id]);
     }
 
     public function render()

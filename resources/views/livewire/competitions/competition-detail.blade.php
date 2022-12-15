@@ -15,7 +15,7 @@
                     <div>
                         @can('read-comp')
                         <h1 class="text-2xl font-semibold text-indigo-700">Events</h1>
-                        <livewire:competitions.events-component comp_id='{{ $comp->id }}'/>
+                        <livewire:competitions.events-component />
                         @endcan
                     </div>
                     <div class="mt-6 border-t-gray-300">

@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Athlete;
 use App\Models\Client;
 use App\Models\Competition;
+use App\Models\Competitor;
 use App\Models\Event;
 
 uses()->group('models');
@@ -25,11 +25,12 @@ it('has many events', function () {
         ->each->toBeInstanceOf(Event::class);
 });
 
-it('has many athlete_competitions', function () {
-    $athlete = Athlete::factory()
-        ->has(Competition::factory()->count(2), 'athlete_competitions')
+it('has many entries (competition_competitors)', function () {
+    $competitor = Competitor::factory()
+        ->has(Competition::factory()->count(2))
         ->create();
-    expect($athlete->athlete_competitions)
+
+    expect($competitor->competitions)
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Competition::class);
 });

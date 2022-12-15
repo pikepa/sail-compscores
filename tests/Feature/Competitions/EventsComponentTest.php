@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Event;
-use Livewire\Livewire;
-use App\Models\Competition;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Livewire\Competitions\EventsComponent;
+use App\Models\Competition;
+use App\Models\Event;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Livewire;
 
 uses(RefreshDatabase::class);
 
@@ -20,7 +20,9 @@ test('A ClientAdmin can display the events component page and content', function
     //Act & Assert
     loginAsUser()->assignRole('ClientAdmin');
 
-    Livewire::test(EventsComponent::class, [$this->comp->id])
+    $this->withSession(['COMP_ID' => $this->comp->id]);
+
+    Livewire::test(EventsComponent::class)
         ->assertSee('Event Name')
         ->assertSee('Event Date')
         ->assertSee('Scheduled')
@@ -38,15 +40,17 @@ test('it shows competitions by start date & time ascending', function () {
     $lastEvent = Event::factory()->create([
         'competition_id' => $this->comp->id,
         'event_date' => '2022-11-19',
-        'event_time' => '17:30'
+        'event_time' => '17:30',
     ]);
     $earliestEvent = Event::factory()->create([
         'competition_id' => $this->comp->id,
         'event_date' => '2022-11-19',
-        'event_time' => '09:30'
+        'event_time' => '09:30',
     ]);
 
     //Act and assert
+    $this->withSession(['COMP_ID' => $this->comp->id]);
+
     loginAsUser()->assignRole('ClientAdmin');
 
     Livewire::test(EventsComponent::class, [$this->comp->id])
@@ -55,4 +59,3 @@ test('it shows competitions by start date & time ascending', function () {
             $lastEvent->event_name,
         ]);
 });
-

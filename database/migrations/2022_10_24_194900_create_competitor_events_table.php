@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Athlete;
+use App\Models\Competitor;
 use App\Models\Event;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,9 +15,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('athlete_events', function (Blueprint $table) {
+        Schema::create('competitor_events', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Athlete::class);
+            $table->foreignIdFor(Competitor::class);
             $table->foreignIdFor(Event::class);
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('athlete_events');
+        Schema::dropIfExists('competitor_events');
     }
 };

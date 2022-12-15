@@ -4,19 +4,27 @@ namespace App\Http\Livewire\Competitions;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
-use LivewireUI\Modal\ModalComponent;
 use Illuminate\Support\Facades\Session;
+use LivewireUI\Modal\ModalComponent;
 
 class EventsComponentForm extends ModalComponent
 {
-    public $showEdit=false;
+    public $showEdit = false;
+
     public $event_id;
+
     public $event_name;
+
     public $event_description;
+
     public $event_date;
+
     public $event_time;
+
     public $event_type;
+
     public $event_status = 'Pending';
+
     public $competition_id;
 
     public function mount($id = null)
@@ -33,6 +41,7 @@ class EventsComponentForm extends ModalComponent
             $this->event_time = $event->event_time;
         }
     }
+
     public function render()
     {
         return view('livewire.competitions.events-component-form');
@@ -47,6 +56,7 @@ class EventsComponentForm extends ModalComponent
         'event_status' => 'required|in:Pending,Completed,Finalised',
         'competition_id' => 'required|integer|exists:competitions,id',
     ];
+
     public function saveEvent()
     {
         $this->checkAuthority('create-event');
@@ -84,6 +94,7 @@ class EventsComponentForm extends ModalComponent
 
         $this->closeModal();
     }
+
     //Validate User is signedin and has valid Permission
     private function checkAuthority($permission)
     {

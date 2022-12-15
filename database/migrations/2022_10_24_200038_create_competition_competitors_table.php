@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Athlete;
 use App\Models\Competition;
+use App\Models\Competitor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,9 +15,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('athlete_competitions', function (Blueprint $table) {
+        Schema::create('competition_competitors', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Athlete::class);
+            $table->foreignIdFor(Competitor::class);
             $table->foreignIdFor(Competition::class);
             $table->timestamps();
         });

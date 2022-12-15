@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\User;
-use App\Models\Event;
-use Livewire\Livewire;
 use App\Models\Competition;
+use App\Models\Event;
+use App\Models\User;
+use Livewire\Livewire;
 
 test('A SuperAdmin user can create an Event', function () {
     $this->withoutExceptionHandling();
@@ -40,7 +40,7 @@ test('An authenticated User with "create-event" permission can create an Event',
     session(['COMP_ID' => $comp->id]);
 
     // Act and Assert
-   Livewire::test('competitions.events-component-form')
+    Livewire::test('competitions.events-component-form')
        ->set('event_name', 'This event')
        ->set('event_description', 'This event description')
        ->set('event_date', '2022-11-24')
@@ -51,7 +51,7 @@ test('An authenticated User with "create-event" permission can create an Event',
        ->assertEmitted('toggleMessage')
       ->assertSessionHas('message', 'Event successfully created.');
 
-   $this->assertTrue(Event::whereEventName('This Event')->exists());
+    $this->assertTrue(Event::whereEventName('This Event')->exists());
 });
 
 test('An authenticated User without specific permission can not create a Competition ', function () {

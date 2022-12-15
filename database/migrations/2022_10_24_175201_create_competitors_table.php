@@ -14,9 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('athletes', function (Blueprint $table) {
+        Schema::create('competitors', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Event::class);
+            $table->text('first_name')->nullable();
+            $table->text('surname')->nullable();
+            $table->text('team_name')->nullable();
+            $table->text('competitor_dob')->nullable();
+            $table->boolean('is_team')->default(0);
+            //   $table->foreignIdFor(Event::class);
             $table->timestamps();
         });
     }

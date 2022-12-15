@@ -4,10 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AthleteEvent>
- */
-class AthleteEventFactory extends Factory
+class CompetitorFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +14,9 @@ class AthleteEventFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'first_name' => fake()->firstName,
+            'surname' => fake()->lastName,
+            'team_name' => fake()->company,
         ];
     }
 }

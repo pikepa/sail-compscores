@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use App\Models\Competition;
-use Illuminate\Support\Arr;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
@@ -19,23 +19,23 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $valueArray1=[
+        $valueArray1 = [
             'Max Reps',
             'For Time',
             'Max Wgt',
             'Comb Wgt',
         ];
-        $valueArray2=[
+        $valueArray2 = [
             '',
             'In Progress',
             'Complete',
             'Finalised',
         ];
-        $hr = substr('0'.random_int(7,12),0,2);
-        $min = substr('0'.random_int(0,59),0,2);
+        $hr = substr('0'.random_int(7, 12), 0, 2);
+        $min = substr('0'.random_int(0, 59), 0, 2);
 
         return [
-            'seq_no' => fake()->randomNumber(4,true),
+            'seq_no' => fake()->randomNumber(4, true),
             'event_name' => fake()->ColorName(),
             'event_description' => fake()->sentence(10),
             'event_date' => Carbon::now(),
