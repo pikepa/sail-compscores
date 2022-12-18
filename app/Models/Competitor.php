@@ -12,7 +12,11 @@ class Competitor extends Model
 
     public function getDisplayNameAttribute()
     {
-        $name = $this->first_name.' '.$this->surname;
+        if($this->is_team){
+            $name = $this->team_name;
+        }else{
+            $name = $this->first_name.' '.$this->surname;
+        }
 
         return $name;
     }

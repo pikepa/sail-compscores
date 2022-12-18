@@ -35,7 +35,7 @@
                                     @foreach($competitors as $competitor)
                                     <tr wire:key="competitor-{{ $competitor->id }}">
                                         <div>
-                                            {{ $competitor }}
+                                            <x-table.detail>{{ $competitor->display_name }}</x-table.detail>
                                             <x-table.detail>{{ $competitor->display_name }}</x-table.detail>
                                             <x-table.detail>{{ $competitor->created_at }}</x-table.detail>
                                         </div>
