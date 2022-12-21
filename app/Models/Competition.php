@@ -69,6 +69,7 @@ class Competition extends Model
     public function competitors(): BelongsToMany
     {
         return $this->belongsToMany(Competitor::class, 'competition_competitors')
+            ->withPivot('entry_status')
         ->withTimestamps();
     }
 }

@@ -36,8 +36,8 @@
                                     <tr wire:key="competitor-{{ $competitor->id }}">
                                         <div>
                                             <x-table.detail>{{ $competitor->display_name }}</x-table.detail>
-                                            <x-table.detail>{{ $competitor->display_name }}</x-table.detail>
-                                            <x-table.detail>{{ $competitor->created_at }}</x-table.detail>
+                                            <x-table.detail>{{ $competitor->pivot->entry_status }}</x-table.detail>
+                                            <x-table.detail>{{ $competitor->pivot->created_at->format('D, jS M Y') }}</x-table.detail>
                                         </div>
                                         <div>
                                             @can('update-competitor')

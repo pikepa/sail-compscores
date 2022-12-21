@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Competitor::class);
             $table->foreignIdFor(Competition::class);
+            $table->string('entry_status')->default('unpaid');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('athlete_competitions');
+        Schema::dropIfExists('competition_competitors');
     }
 };

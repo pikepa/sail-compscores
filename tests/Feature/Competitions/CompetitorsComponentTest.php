@@ -46,7 +46,7 @@ test('A ClientAdmin can display the competitors component page and content', fun
         ->assertSee('Add Competitor')
         ->assertSee($this->comp->competitors->count(3))
         ->assertSeeText($this->comp->competitors->first()->display_name)
-        ->assertSeeText($this->comp->competitors->first()->created_at);
+        ->assertSeeText($this->comp->competitors->first()->created_at->format('D, jS M Y'));
     });
 
 
@@ -90,3 +90,23 @@ test('When a team competitor is displayed one can see the team name', function()
         ->assertSee($this->comp->competitors->count(4))
         ->assertSeeText('Test Team');
 });
+
+test('When a team competitor is displayed one can see the entry date from the competition_competitor file', function(){
+   //Act & Assert
+   $this->withSession(['COMP_ID' => $this->comp->id]);
+
+   $competitor=Competitor::factory()->create();
+
+   $entry = CompetitionCompetitor::factory()->create([
+        'competitor_id' => $competitor->id,
+        'competition_id' => Session('COMP_ID'),
+        'entry_status' => 'Paid',
+   ]);
+   loginAsUser()->assignRole('ClientAdmin');
+
+   Livewire::test(CompetitorsComponent::class)
+        ->assertSee($this->comp->competitors->count(4))
+        ->assertSee('Paid')
+        ->assertSee($entry->created_at->format('D, jS M Y'));
+});
+

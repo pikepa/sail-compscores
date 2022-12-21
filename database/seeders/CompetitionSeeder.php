@@ -14,9 +14,11 @@ class CompetitionSeeder extends Seeder
      */
     public function run()
     {
-        //Create Random competitions
+        //Create Random competitions with events and competitors
         Competition::factory()->count(5)
         ->hasEvents(5)
+        ->hasCompetitors(5)
         ->create(['client_id' => 2]);
+
     }
 }

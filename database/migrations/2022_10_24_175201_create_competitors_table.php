@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('team_name')->nullable();
             $table->text('competitor_dob')->nullable();
             $table->boolean('is_team')->default(0);
-            //   $table->foreignIdFor(Event::class);
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('athletes');
+        Schema::dropIfExists('competitors');
     }
 };
