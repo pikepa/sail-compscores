@@ -20,7 +20,7 @@
                                             @can('update-competitor')
                                             <x-table.header>
                                                 @can('create-competitor')
-                                                <button wire:click="$emit('openModal', 'competitions.events-component-form')"
+                                                <button wire:click="$emit('openModal', 'competitions.competitors-component-form')"
                                                     class="relative inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                                     Add Competitor
                                                 </button>
@@ -54,7 +54,7 @@
                                                     </button>
 
                                                     @can('delete-competitor')
-                                                    <button wire:click="destroyCompetitor('{{ $competitor->id }}')" type="button"
+                                                    <button wire:click="deleteCompetitor('{{ $competitor->id }}')" type="button"
                                                         class="text-indigo-600 text-center hover:text-indigo-900">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

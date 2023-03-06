@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Competitor extends Model
 {
+    protected $guarded = [];
+
     use HasFactory;
 
     public function getDisplayNameAttribute()
@@ -30,6 +32,6 @@ class Competitor extends Model
     public function competitions(): BelongsToMany
     {
         return $this->belongsToMany(Competition::class, 'competition_competitors')
-        ->withTimestamps();
+            ->withTimestamps();
     }
 }

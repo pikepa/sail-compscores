@@ -22,6 +22,12 @@ class Competition extends Model
         'start_date',
         'released_at',
     ];
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'start_date' => 'datetime',
+        'released_at' => 'datetime',
+    ];
 
     public function scopeForSessionClient($query)
     {
@@ -70,6 +76,6 @@ class Competition extends Model
     {
         return $this->belongsToMany(Competitor::class, 'competition_competitors')
             ->withPivot('entry_status')
-        ->withTimestamps();
+            ->withTimestamps();
     }
 }

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class CompetitionCompetitor extends Model
 {
     use HasFactory;
+    
+    protected $guarded = [];
 
     protected $dates = [
         'created_at',

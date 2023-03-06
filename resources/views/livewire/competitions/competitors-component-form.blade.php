@@ -13,34 +13,41 @@
 
     <x-slot name="content">
         <div>
-            <x-input-label class="text-indigo-700 mt-2 font-bold">Competitor Name</x-input-label>
-            <x-text-input wire:model='competitor->name' class="mt-2 w-full px-4 py-2" placeholder="Enter the Competitiors name.">
+            <x-input-label class="text-indigo-700 mt-2 font-bold">First Name</x-input-label>
+            <x-text-input wire:model='first_name' class="mt-2 w-full px-4 py-2" placeholder="Enter the competitors first name.">
             </x-text-input>
-            <x-input-error :messages="$errors->get('competitor_name')"></x-input-error>
+            <x-input-error :messages="$errors->get('first_name')"></x-input-error>
         </div>
 
         <div>
-            <x-input-label class="text-indigo-700 mt-2 font-bold">Competitor Level</x-input-label>
-                <select wire:model="competitor_level" class="mt-2 w-full px-4 py-2 rounded-lg border-gray-100">
-                    <option value="">Select the competitor level.</option>
-                    <option value="RX">RX</option>
-                    <option value="SC">Scaled</option>
-                </select>
-            <x-input-error :messages="$errors->get('competitor_level')"></x-input-error>
+            <x-input-label class="text-indigo-700 mt-2 font-bold">Surname</x-input-label>
+            <x-text-input wire:model='surname' class="mt-2 w-full px-4 py-2" placeholder="Enter the competitor surname .">
+            </x-text-input>
+            <x-input-error :messages="$errors->get('surname')"></x-input-error>
         </div>
-
+        <div>
+            <x-input-label class="text-indigo-700 mt-2 font-bold">Gender</x-input-label>
+                <select wire:model="gender" class="mt-2 w-full px-4 py-2 rounded-lg border-gray-100">
+                    <option value="">Enter the competitors Gender.</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            <x-input-error :messages="$errors->get('gender')"></x-input-error>
+        </div>     
         <div>
             <x-input-label class="text-indigo-700 mt-2 font-bold">DOB</x-input-label>
-            <x-text-input  wire:model='competitor_dob'  class="mt-2 w-full px-4 py-2" placeholder="Enter the competitor dob.">
+            <x-text-input  wire:model='competitor_dob'  class="mt-2 w-full px-4 py-2" placeholder="Enter the DOB date.">
             </x-text-input>
             <x-input-error :messages="$errors->get('competitor_dob')"></x-input-error>
         </div>
+
         <div>
-            <x-input-label class="text-indigo-700 mt-2 font-bold">Status</x-input-label>
-            <x-text-input wire:model='competitor_status' class="mt-2 w-full px-4 py-2" placeholder="Enter the competitor status.">
+            <x-input-label class="text-indigo-700 mt-2 font-bold">Email</x-input-label>
+            <x-text-input  wire:model='email'  class="mt-2 w-full px-4 py-2" placeholder="Enter the DOB date.">
             </x-text-input>
-            <x-input-error :messages="$errors->get('competitor_Status')"></x-input-error>
+            <x-input-error :messages="$errors->get('email')"></x-input-error>
         </div>
+
 
     </x-slot>
 

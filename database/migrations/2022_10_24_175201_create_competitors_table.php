@@ -18,7 +18,9 @@ return new class extends Migration
             $table->id();
             $table->text('first_name')->nullable();
             $table->text('surname')->nullable();
+            $table->text('gender');
             $table->text('team_name')->nullable();
+            $table->text('email')->nullable();
             $table->text('competitor_dob')->nullable();
             $table->boolean('is_team')->default(0);
             $table->timestamps();

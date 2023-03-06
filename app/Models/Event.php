@@ -12,12 +12,11 @@ class Event extends Model
 {
     protected $guarded = [];
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'event_date',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'event_date' => 'datetime',
     ];
-
     use HasFactory;
 
     public function getFormattedEventDateAttribute()
