@@ -21,6 +21,7 @@ class CompetitionCompetitorFactory extends Factory
         return [
             'competitor_id' => Competitor::factory()->create()->id,
             'competition_id' => Competition::factory()->create()->id,
+            // 'entry_status' => 'UNPAID',
         ];
     }
 }

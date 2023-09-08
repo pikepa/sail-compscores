@@ -13,18 +13,21 @@ class CompetitorsComponent extends Component
     public $displayForm = false;
 
     public $competitors;
+    public $comp;
 
     public function mount()
     {
 
-        $comp = Competition::find(session('COMP_ID'));
-        $this->competitors = $comp->competitors()->orderBy('created_at', 'asc')
-                        ->get();
+        $this->comp = Competition::find(session('COMP_ID'));
+
     }
 
     public function render()
     {        
         $this->checkAuthority('read-competitor');
+
+        $this->competitors = $this->comp->competitors()->orderBy('created_at', 'asc')
+        ->get();
 
         return view('livewire.competitions.competitors-component');
     }
@@ -32,7 +35,6 @@ class CompetitorsComponent extends Component
     public function deleteCompetitor($id)
     {        
         $this->checkAuthority('delete-competitor');
-    
         Competitor::find($id)->competitions()->detach(session('COMP_ID'));
 
     }

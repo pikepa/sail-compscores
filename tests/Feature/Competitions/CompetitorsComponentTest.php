@@ -5,6 +5,7 @@ use App\Models\Competitor;
 use App\Models\Competition;
 use App\Models\CompetitionCompetitor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Database\Factories\CompetitionCompetitorFactory;
 use App\Http\Livewire\Competitions\CompetitorsComponent;
 
 uses(RefreshDatabase::class);
@@ -113,16 +114,16 @@ test('When a team competitor is displayed one can see the entry date from the co
 test('when a Client Admin Deletes a competitor, it is only deleted from the Competition', function(){
     //Act & Assert
     $this->withSession(['COMP_ID' => $this->comp->id]);
- 
+
     expect(CompetitionCompetitor::all())->tohaveCount(1);
-   
+
     loginAsUser()->assignRole('ClientAdmin');
-     
+
     Livewire::test(CompetitorsComponent::class)
         ->call('deleteCompetitor',CompetitionCompetitor::first()->competitor_id);
-
-    expect(CompetitionCompetitor::all())->tohaveCount(0);
-    expect(Competitor::all())->tohaveCount(1);
+        
+        expect(CompetitionCompetitor::all())->tohaveCount(0);
+        expect(Competitor::all())->tohaveCount(1);
 
 
  });
