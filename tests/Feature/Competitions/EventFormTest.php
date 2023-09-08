@@ -13,11 +13,12 @@ test('A SuperAdmin user can create an Event', function () {
 
     // Create a competition
     $comp = Competition::factory()->create();
+
     // Set the Session CLIENT_ID
     session(['COMP_ID' => $comp->id]);
 
     Livewire::test('competitions.events-component-form')
-        ->set('event_name', 'This event')
+        ->set('event_name', 'This Event')
         ->set('event_description', 'This event description')
         ->set('event_date', '2022-11-24')
         ->set('event_time', '09:00')
@@ -25,7 +26,9 @@ test('A SuperAdmin user can create an Event', function () {
         ->set('event_status', 'Pending')
         ->call('saveEvent')
         ->assertEmitted('toggleMessage')
-       ->assertSessionHas('message', 'Event successfully created.');
+        ->assertSessionHas('message', 'Event successfully created.');
+
+
 
     $this->assertTrue(Event::whereEventName('This Event')->exists());
 });
@@ -41,7 +44,7 @@ test('An authenticated User with "create-event" permission can create an Event',
 
     // Act and Assert
     Livewire::test('competitions.events-component-form')
-       ->set('event_name', 'This event')
+       ->set('event_name', 'This Event')
        ->set('event_description', 'This event description')
        ->set('event_date', '2022-11-24')
        ->set('event_time', '09:00')
