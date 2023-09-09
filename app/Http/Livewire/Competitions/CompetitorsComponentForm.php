@@ -2,22 +2,26 @@
 
 namespace App\Http\Livewire\Competitions;
 
-use App\Models\CompetitionCompetitor;
 use App\Models\Competitor;
 use Illuminate\Support\Facades\Auth;
-use LivewireUI\Modal\ModalComponent;
 use Illuminate\Support\Facades\Session;
+use LivewireUI\Modal\ModalComponent;
 
 class CompetitorsComponentForm extends ModalComponent
 {
     public $showEdit = false;
-    public $first_name;
-    public $surname;
-    public $email;
-    public $gender;
-    public $competitor_dob;
-    public $competitor_id;
 
+    public $first_name;
+
+    public $surname;
+
+    public $email;
+
+    public $gender;
+
+    public $competitor_dob;
+
+    public $competitor_id;
 
     protected $rules = [
         'first_name' => 'required|min:3|max:30',
@@ -53,7 +57,7 @@ class CompetitorsComponentForm extends ModalComponent
         $this->competition_id = session('COMP_ID');
 
         $validatedData = $this->validate();
-        
+
         //create Competitor with link to Competition
         Competitor::create($validatedData)
             ->competitions()->attach($this->competition_id);

@@ -19,6 +19,5 @@ class CompetitionSeeder extends Seeder
         ->hasEvents(5)
         ->hasCompetitors(5)
         ->create(['client_id' => 2]);
-
     }
 }

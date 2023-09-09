@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class CompetitorFactory extends Factory
 {
@@ -18,11 +18,11 @@ class CompetitorFactory extends Factory
         return [
             'first_name' => fake()->firstName,
             'surname' => fake()->lastName,
-            'gender' => Arr::random(['Male','Female']),
+            'gender' => Arr::random(['Male', 'Female']),
             'competitor_dob' => Carbon::today()->subYears(rand(20, 70))->format('Y-m-d'),
             'email' => fake()->safeEmail(),
             'team_name' => fake()->company,
-            'is_team' => Arr::random(['0','1']),
+            'is_team' => Arr::random(['0', '1']),
         ];
     }
 }

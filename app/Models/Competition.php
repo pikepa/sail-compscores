@@ -22,6 +22,7 @@ class Competition extends Model
         'start_date',
         'released_at',
     ];
+
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

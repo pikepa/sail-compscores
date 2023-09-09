@@ -28,8 +28,6 @@ test('A SuperAdmin user can create an Event', function () {
         ->assertEmitted('toggleMessage')
         ->assertSessionHas('message', 'Event successfully created.');
 
-
-
     $this->assertTrue(Event::whereEventName('This Event')->exists());
 });
 

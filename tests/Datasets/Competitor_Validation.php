@@ -18,5 +18,4 @@ dataset('competitor_validation', [
     'email is required' => ['email', null, 'required'],
     'email is not a valid' => ['email', 'Wrong Value', 'email'],
 
-
 ]);

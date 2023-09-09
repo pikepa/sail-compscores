@@ -17,6 +17,7 @@ class Event extends Model
         'updated_at' => 'datetime',
         'event_date' => 'datetime',
     ];
+
     use HasFactory;
 
     public function getFormattedEventDateAttribute()

@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\User;
-use App\Models\Event;
-use Livewire\Livewire;
-use App\Models\Competitor;
 use App\Models\Competition;
 use App\Models\CompetitionCompetitor;
+use App\Models\Competitor;
+use App\Models\User;
+use Livewire\Livewire;
 
 test('A SuperAdmin user can create a Competitor', function () {
 
@@ -55,7 +54,6 @@ test('An authenticated User with "create-competitor" permission can create a Com
     $this->assertTrue(Competitor::whereFirstName($competitor->first_name)->exists());
 });
 
-
 test('An authenticated User without specific permission can not create a competitor ', function () {
 
     // Create SuperAdmin user
@@ -89,7 +87,7 @@ test('Event Validation rules on save', function ($field, $value, $rule) {
 })->with('competitor_validation');
 
 test('when a competitor is added, the corresponding CompetitorCompetiton record is added', function () {
-$this->withoutExceptionHandling();
+    $this->withoutExceptionHandling();
     // Create authorised user
     loginAsUser()->givePermissionTo('create-competitor');
 
@@ -107,5 +105,5 @@ $this->withoutExceptionHandling();
         ->set('competitor_dob', $competitor->competitor_dob)
         ->call('saveCompetitor');
 
-        expect(CompetitionCompetitor::all())->tohaveCount(1);
-    });
+    expect(CompetitionCompetitor::all())->tohaveCount(1);
+});
