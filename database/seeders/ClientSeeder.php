@@ -31,8 +31,6 @@ class ClientSeeder extends Seeder
             'owner_id' => 2,
         ]);
 
-        //Create Random Clients
-        Client::factory()->count(5)
-        ->create();
+      
     }
 }

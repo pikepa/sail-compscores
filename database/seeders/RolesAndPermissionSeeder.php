@@ -76,5 +76,9 @@ class RolesAndPermissionSeeder extends Seeder
         // or may be done by chaining
         $role = Role::create(['name' => 'CompManager'])
             ->givePermissionTo(['read-client', 'read-comp', 'update-comp', 'publish-comp']);
+
+        // or may be done by chaining
+        $role = Role::create(['name' => 'CompUser'])
+            ->givePermissionTo(['read-client', 'read-comp', 'update-comp', 'publish-comp']);
     }
 }

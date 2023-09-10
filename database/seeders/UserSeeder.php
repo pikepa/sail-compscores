@@ -33,10 +33,18 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'),
         ])->assignRole('CompManager');
 
-        //Create Random users
-        User::factory()->count(5)
-        ->create()->each(function ($user) {
-            $user->assignRole('ClientAdmin');
-        });
+        User::factory()->create([
+            'name' => 'Comp User 1',
+            'email' => 'compuser1@gmail.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('CompUser');
+
+        User::factory()->create([
+            'name' => 'Comp User 2',
+            'email' => 'compuser2@gmail.com',
+            'password' => bcrypt('password'),
+        ])->assignRole('CompUser');
+
+
     }
 }

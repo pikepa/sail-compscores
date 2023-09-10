@@ -7,12 +7,8 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+
+    public function run(): void
     {
         //Set up Roles and Permissions
         // $this->call([

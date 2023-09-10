@@ -7,17 +7,13 @@ use Illuminate\Database\Seeder;
 
 class CompetitionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+   
+    public function run():void
     {
         //Create Random competitions with events and competitors
-        Competition::factory()->count(5)
+        Competition::factory()->count(4)
         ->hasEvents(5)
-        ->hasCompetitors(5)
+        // ->hasCompetitors(5)
         ->create(['client_id' => 2]);
     }
 }
