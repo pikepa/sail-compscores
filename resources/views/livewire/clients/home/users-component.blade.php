@@ -11,18 +11,17 @@
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-slate-300">
                                     <tr>
-                                        <x-table.header>Name</x-table.header>
+                                        <x-table.header >Name</x-table.header>
                                         <x-table.header>Email</x-table.header>
-                                        <x-table.header>Roles</x-table.header>
+                                        <x-table.header>Role</x-table.header>
                                         <x-table.header>Status</x-table.header>
                                         @can('read-user')
                                         <x-table.header>
                                             @can('invite-user')
-                                            <button wire:click="$emit('openModal', 'clients.home.users-component-form')"
-                                            class="relative inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                                            Invite User
-                                        </button>
-
+                                                <button wire:click="$emit('openModal', 'clients.home.users-component-form')"
+                                                    class="relative inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                                    Invite User
+                                                </button>
                                             @endcan
                                         </x-table.header>
                                         @endcan
@@ -34,7 +33,7 @@
                                     <tr>
                                         <x-table.detail>{{ $user->name }}</x-table.detail>
                                         <x-table.detail>{{ $user->email }}</x-table.detail>
-                                        <x-table.detail>{{ $user->created_at }}</x-table.detail>
+                                        <x-table.detail>Role goes here</x-table.detail>
                                         <x-table.detail></x-table.detail>
                                         @can('update-user')
                                         <x-table.detail>

@@ -12,12 +12,14 @@ class ClientHomePage extends ModalComponent
     public function mount($id)
     {
         session(['CLIENT_ID' => $id]);
-        $this->client = Client::find($id);
-        session(['APP_PAGE_TITLE' => $this->client->name]);
+
     }
 
     public function render()
     {
+        $this->client = Client::find(session('CLIENT_ID'));
+        session(['APP_PAGE_TITLE' => $this->client->name]);
+        
         return view('livewire.clients.home.client-home-page');
     }
 }

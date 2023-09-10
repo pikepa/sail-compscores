@@ -15,7 +15,7 @@ class UsersComponent extends Component
     {
         $this->client_users = Client::find(session('CLIENT_ID'))
                 ->client_users;
-        //   ->orderByDesc('created_at');
+                
     }
 
     public function render()

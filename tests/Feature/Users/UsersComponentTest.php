@@ -22,7 +22,7 @@ test('A ClientAdmin can display the UsersComponent page', function () {
     Livewire::test(UsersComponent::class)
         ->assertSee('Name')
         ->assertSee('Email')
-        ->assertSee('Roles')
+        ->assertSee('Role')
         ->assertSee('Status');
 });
 

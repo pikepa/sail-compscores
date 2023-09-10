@@ -30,7 +30,7 @@
                             }}<span class="sr-only">, {{ $user->name }} </span></a>
                     </x-table.detail>
                     <x-table.detail>{{ $user->email }}</x-table.detail>
-                    <x-table.detail>{{ $user->contact_phone }}</x-table.detail>
+                    <!-- <x-table.detail>{{ $user->contact_phone }}</x-table.detail> -->
                     @can('update-org')
                     <x-table.detail>
                         <div class="flex flex-row justify-around">

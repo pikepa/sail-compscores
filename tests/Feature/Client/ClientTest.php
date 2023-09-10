@@ -13,7 +13,7 @@ test('An authorised user can view their Organisations', function () {
     //Act & Assert
     loginAsUser($client->user)->assignRole('ClientAdmin');
 
-    $this->get('/client')->assertOk()
+    $this->get(route('clients'))->assertOk()
         ->assertSee('My Organisations')
         ->assertSee($client->user->name)
         ->assertSee($client->contact_name)
@@ -30,7 +30,7 @@ test('A SuperAdmin user can view any Organisation', function () {
     //Act & Assert
     $user = loginAsUser()->assignRole('SuperAdmin');
 
-    $this->get('/client')->assertOk()
+    $this->get(route('clients'))->assertOk()
     ->assertSee('All Tenants')
     ->assertSee('Add New')
     ->assertSee($client->contact_name)

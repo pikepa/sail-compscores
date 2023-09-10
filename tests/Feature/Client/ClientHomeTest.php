@@ -79,7 +79,7 @@ test('The Client home page can render the Users livewire component and display r
     $component = Livewire::test(UsersComponent::class);
 
     $component->assertStatus(200)
-    ->assertSee(['Name', 'Email', 'Roles', 'Status'])
+    ->assertSee(['Name', 'Email', 'Role', 'Status'])
     ->assertSee($created_user->name)
     ->assertSee($created_user->email);
     // ->assertSee($client_user->roles)

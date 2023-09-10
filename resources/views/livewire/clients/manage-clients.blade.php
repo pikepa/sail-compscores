@@ -48,7 +48,8 @@
                                     @foreach($clients as $client)
                                     <tr>
                                         <x-table.detail>
-                                            <a href="/client/home/{{ $client->id }}" class="text-indigo-600 hover:text-indigo-900">{{ $client->name
+                                            
+                                            <a href="{{route('client-home', ['id' =>  $client->id ] ) }}" class="text-indigo-600 hover:text-indigo-900">{{ $client->name
                                                 }}<span class="sr-only">, {{ $client->name }} </span></a>
                                         </x-table.detail>
                                         <x-table.detail>{{ $client->contact_name }}</x-table.detail>
