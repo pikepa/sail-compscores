@@ -5,6 +5,7 @@ Compscores is an application wich allows a gym or Crossfit Box to create competi
 
 ### Features
 Features include the following:-
+    
     * The registration of an owning organisation by a **SuperAdmin**.
         - An organisation or client is linked to a specific User as the Owner. 
     + The registration of users and roles for the organisation (client) by a **ClientAdmin**.
