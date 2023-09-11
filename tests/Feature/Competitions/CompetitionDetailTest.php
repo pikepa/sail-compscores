@@ -8,6 +8,7 @@ uses(RefreshDatabase::class);
 beforeEach(function () {
     //Arrange
     $this->comp = Competition::factory()->create();
+    SESSION(['CLIENT_ID' => $this->comp->id]);
 });
 
 it('has Client Competition Detail page', function () {
