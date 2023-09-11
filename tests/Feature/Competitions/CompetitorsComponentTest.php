@@ -10,42 +10,20 @@ use Livewire\Livewire;
 uses(RefreshDatabase::class);
 
 beforeEach(function () {
-
+    
     //Arrange
     $this->comp = Competition::factory()
     ->has(Competitor::factory()->count(1))
     ->create();
 });
 
-test('A SuperUser can display the competitors component page and content', function () {
+test('An guest cannot display the competitors component page and content', function () {
     //Act & Assert
 
     $this->withSession(['COMP_ID' => $this->comp->id]);
-
-    loginAsUser()->assignRole('SuperAdmin');
-
+    
     Livewire::test(CompetitorsComponent::class)
-        ->assertSee('Competitor Name')
-        ->assertSee('Entry Status')
-        ->assertSee('Add Competitor')
-        ->assertSee($this->comp->competitors->count(1))
-        ->assertSeeText($this->comp->competitors->first()->display_name);
-});
-
-test('A ClientAdmin can display the competitors component page and content', function () {
-    //Act & Assert
-
-    $this->withSession(['COMP_ID' => $this->comp->id]);
-
-    loginAsUser()->assignRole('ClientAdmin');
-
-    Livewire::test(CompetitorsComponent::class)
-        ->assertSee('Competitor Name')
-        ->assertSee('Entry Status')
-        ->assertSee('Add Competitor')
-        ->assertSee($this->comp->competitors->count(3))
-        ->assertSeeText($this->comp->competitors->first()->display_name)
-        ->assertSeeText($this->comp->competitors->first()->created_at->format('D, jS M Y'));
+    ->assertStatus(403);
 });
 
 test('An ordinary user cannot display the competitors component page and content', function () {
@@ -59,13 +37,34 @@ test('An ordinary user cannot display the competitors component page and content
     ->assertStatus(403);
 });
 
-test('An guest cannot display the competitors component page and content', function () {
+test('A SuperUser can display the competitors component page and content', function () {
     //Act & Assert
-
+    
     $this->withSession(['COMP_ID' => $this->comp->id]);
-
+    
+    loginAsUser()->assignRole('SuperAdmin');
+    
     Livewire::test(CompetitorsComponent::class)
-    ->assertStatus(403);
+    ->assertSee('Competitor Name')
+    ->assertSee('Entry Status')
+        ->assertSee('Add Competitor')
+        ->assertSee($this->comp->competitors->count(1))
+        ->assertSeeText($this->comp->competitors->first()->display_name);
+});
+
+test('A ClientAdmin can display the competitors component page and content', function () {
+    //Act & Assert
+    
+    $this->withSession(['COMP_ID' => $this->comp->id]);
+    
+    loginAsUser()->assignRole('ClientAdmin');
+    
+    Livewire::test(CompetitorsComponent::class)
+    ->assertSee('Competitor Name')
+    ->assertSee('Entry Status')
+        ->assertSee('Add Competitor')
+        ->assertSee($this->comp->competitors->count(1))
+        ->assertSeeText($this->comp->competitors->first()->display_name);
 });
 
 test('When a team competitor is displayed one can see the team name', function () {

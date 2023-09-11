@@ -34,29 +34,22 @@ it('adds two Clients owned by Client Adminb', function () {
 });
 
 
-    it('adds three competitions for each client each with 4 events', function () {
+    it('adds four competitions for each client each with 5 events', function () {
 
           //Arrange
-          $this->assertDatabaseCount(Client::class, 0);
-
+          Client::factory()->create();
+          $this->assertDatabaseCount(Competitions::class, 0);
+          $this->assertDatabaseCount(Events::class, 0);
+          $this->assertDatabaseCount(Competitors::class, 0);
+          
           //Act
           $this->artisan('db:seed CompetitionSeeder');
-
-
+          
           //Assert
-          $this->assertDatabaseCount(Competition::class, 4);
-
+          $this->assertDatabaseCount(Competitions::class, 4);
+          $this->assertDatabaseCount(Events::class, 20);
+          $this->assertDatabaseCount(Competitors::class, 40);
+          
 
         });
-
-
-    it('adds 4 events for each competition', function () {
-
-          //Arrange
-
-          //Act
-
-          //Assert
-
-        })->skip();
 
