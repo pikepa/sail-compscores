@@ -8,8 +8,8 @@ Features include the following:-
     
     - The registration of an owning organisation by a **SuperAdmin**.
         - An organisation or client is linked to a specific User as the Owner. 
-    + The registration of users and roles for the organisation (client) by a **ClientAdmin**.
-    + The creation of competitions and client Users (via email invitations) for a specific client.
+    - The registration of users and roles for the organisation (client) by a **ClientAdmin**.
+    - The creation of competitions and client Users (via email invitations) for a specific client.
         - Note an email address (user) may be registered for multiple organisations via the 'client_user' relationship, but will only see information for the client selected after login.
     - The creation of events for a competition, with the ability to specify scoring methods for that event.
     - The creation of atheletes or teams to participate within a competition, including different levels of skill (RX etc) or age groups
