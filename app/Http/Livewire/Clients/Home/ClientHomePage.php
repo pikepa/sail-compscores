@@ -12,6 +12,7 @@ class ClientHomePage extends ModalComponent
     public function mount($id)
     {
         session(['CLIENT_ID' => $id]);
+        session(['COMP_ID' => ""]);
 
     }
 

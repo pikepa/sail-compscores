@@ -18,12 +18,11 @@ Route::get('/profile', function () {
 })->name('profile');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/client/competition/{id}', CompetitionDetail::class)->name('client-competition');
-    Route::get('/client/home/{id}', ClientHomePage::class)->name('client-home');
-    Route::get('/client/invite', InviteNewUsers::class)->name('user.invite');
     Route::get('/clients', ManageClients::class)->name('clients');
-    Route::get('/competitions', ManageClients::class)->name('competitions');
+    Route::get('/client/home/{id}', ClientHomePage::class)->name('client-home');
+    Route::get('/client/competition/{id}', CompetitionDetail::class)->name('client-competition');
     Route::get('/events', ManageClients::class)->name('events');
+    Route::get('/client/invite', InviteNewUsers::class)->name('user.invite');
 
     Route::get('/results', ManageResults::class)->name('results');
 

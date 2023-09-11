@@ -17,26 +17,32 @@
                         {{ __('Organisation') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('competitions')" :active="request()->routeIs('competitions')">
-                        {{ __('Competitions') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('events')" :active="request()->routeIs('events')">
-                        {{ __('Events') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('results')" :active="request()->routeIs('results')">
-                        {{ __('Results') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                @if(! request()->routeIs('clients')   ) 
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('client-home',[session('CLIENT_ID')])" 
+                        :active="request()->routeIs('client-home')">
+                            {{ __('Competitions') }}
+                        </x-nav-link>
+                    </div>
+                    @if( request()->routeIs('client-competition')   ) 
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('client-competition',[session('COMP_ID')])" :active="request()->routeIs('client-competition')">
+                                {{ __('Events') }}
+                            </x-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('results')" :active="request()->routeIs('results')">
+                                {{ __('Results') }}
+                            </x-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('Dashboard') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
