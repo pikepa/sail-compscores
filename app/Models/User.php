@@ -50,9 +50,9 @@ class User extends Authenticatable
         $query->where('client_id', session('CLIENT_ID'));
     }
 
-    public function clients(): HasMany
+    public function clients(): BelongsToMany
     {
-        return $this->hasMany(Client::class, 'owner_id');
+        return $this->BelongsToMany(Client::class, 'client_users', 'user_id', 'client_id');
     }
 
     public function client_users(): BelongsToMany

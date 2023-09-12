@@ -71,7 +71,7 @@ test('The Client home page can render the Users livewire component and display r
         'client_id' => $client->id,
     ]);
 
-    $client->client_users()->attach([$created_user->id]);
+    $client->users()->attach([$created_user->id]);
 
     // Act & Assert
     loginAsUser($client->owner)->assignRole('ClientAdmin');

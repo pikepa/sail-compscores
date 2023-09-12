@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Clients;
 
+use App\Models\User;
 use App\Models\Client;
+use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Livewire\Component;
 
 class ManageClients extends Component
 {
@@ -28,9 +29,13 @@ class ManageClients extends Component
         if (Auth::user()->hasRole('SuperAdmin')) {
             return view('livewire.clients.manage-clients',
                 ['clients' => Client::orderBy('name')->paginate(6)]);
+
         } else {
+
+            $user=User::find(Auth::user()->id);
+            $linkedClients = $user->clients->pluck('id');
             return view('livewire.clients.manage-clients',
-                ['clients' => Client::where('owner_id', Auth::id())->orderBy('name')->paginate(6)]);
+                ['clients' => Client::whereIn('id', $linkedClients)->orderBy('created_at','desc')->paginate(6)]);
         }
     }
 

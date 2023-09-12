@@ -19,17 +19,17 @@ class Client extends Model
         return $query->where('client_id', session('CLIENT_ID'));
     }
 
-    public function user(): BelongsTo
+    public function users(): BelongsToMany
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->BelongsToMany(User::class, 'client_users', 'client_id', 'user_id');
     }
 
-    public function client_users(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'client_users', 'client_id', 'user_id')
-        ->orderByDesc('users.created_at')
-        ->withTimestamps();
-    }
+    // public function client_users(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(User::class, 'client_users', 'client_id', 'user_id')
+    //     ->orderByDesc('users.created_at')
+    //     ->withTimestamps();
+    // }
 
     public function competitions(): HasMany
     {

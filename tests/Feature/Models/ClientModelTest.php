@@ -7,13 +7,15 @@ use App\Models\User;
 
 uses()->group('models');
 
-it('belongs to a User', function () {
-    $client = Client::factory()
-    ->has(User::factory())
-    ->create();
 
-    expect($client->user)
-        ->toBeInstanceOf(User::class);
+it('has many users', function () {
+    $client = Client::factory()
+        ->has(User::factory()->count(2))
+        ->create();
+
+    expect($client->users)
+        ->toHaveCount(2)
+        ->each->toBeInstanceOf(User::class);
 });
 
 it('has many competitions', function () {
@@ -30,15 +32,6 @@ it('has many competitions', function () {
         ->each->toBeInstanceOf(Competition::class);
 });
 
-it('has many client_users', function () {
-    $client = Client::factory()
-        ->has(User::factory()->count(2), 'client_users')
-        ->create();
-
-    expect($client->client_users)
-        ->toHaveCount(2)
-        ->each->toBeInstanceOf(User::class);
-});
 
 it('has many invitees', function () {
     $client = Client::factory()

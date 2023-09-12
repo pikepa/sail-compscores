@@ -8,7 +8,7 @@ use Livewire\Livewire;
 beforeEach(function () {
     //Arrange
     $this->client = Client::factory()
-    ->has(User::factory(), 'client_users')
+    ->has(User::factory())
     ->create();
 
     //Set up the session to allow the scope to act.
@@ -34,14 +34,14 @@ it('displays related users in descending sort order', function () {
     $userB = User::factory()->create();
     $userC = User::factory()->create();
 
-    $this->client->client_users()->attach([$userA->id, $userB->id, $userC->id]);
+    $this->client->users()->attach([$userA->id, $userB->id, $userC->id]);
 
     Livewire::test(UsersComponent::class)
         ->assertSee($userA->name)
         ->assertSee($userB->name)
         ->assertSee($userC->name);
 
-    expect($this->client->client_users)
+    expect($this->client->users)
         ->toHaveCount(4)
         ->each->toBeInstanceOf(User::class);
 });

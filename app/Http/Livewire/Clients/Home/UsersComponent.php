@@ -14,7 +14,7 @@ class UsersComponent extends Component
     public function mount()
     {
         $this->client_users = Client::find(session('CLIENT_ID'))
-                ->client_users;
+                ->users;
                 
     }
 

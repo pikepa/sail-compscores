@@ -6,19 +6,26 @@ use App\Models\User;
 
 test('An authorised user can view their Organisations', function () {
     //Arrange
-    $client = Client::factory()
-        ->has(User::factory())
-        ->create();
+    $user = User::factory()->create();
+    $client_A = Client::factory()->create();
+    $client_B = Client::factory()->create();
+
+    $user->clients()->sync([$client_A->id , $client_B->id]);
 
     //Act & Assert
-    loginAsUser($client->user)->assignRole('ClientAdmin');
+    loginAsUser($user)->assignRole('ClientAdmin');
+
+    expect($user->clients)
+    ->toHaveCount(2)
+    ->each->toBeInstanceOf(Client::class);
 
     $this->get(route('clients'))->assertOk()
         ->assertSee('My Organisations')
-        ->assertSee($client->user->name)
-        ->assertSee($client->contact_name)
-        ->assertSee($client->contact_email)
-        ->assertSee($client->contact_phone);
+        ->assertSee($client_A->name)
+        ->assertSee($client_A->contact_name)
+        ->assertSee($client_B->name)
+        ->assertSee($client_A->contact_name);
+
 });
 
 test('A SuperAdmin user can view any Organisation', function () {
