@@ -11,6 +11,7 @@ class ManageUsers extends Component
     {
         // dd('im here');
     }
+
     public function render()
     {
         return view('livewire.users.manage-users',

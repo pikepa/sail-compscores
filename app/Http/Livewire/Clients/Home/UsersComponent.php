@@ -15,7 +15,6 @@ class UsersComponent extends Component
     {
         $this->client_users = Client::find(session('CLIENT_ID'))
                 ->users;
-                
     }
 
     public function render()

@@ -42,7 +42,7 @@ class EventFactory extends Factory
             'event_time' => $hr.':'.$min,
             'event_type' => Arr::random($valueArray1),
             'event_status' => Arr::random($valueArray2),
-           // 'competition_id' => Competition::factory()->create()->id,
+            // 'competition_id' => Competition::factory()->create()->id,
         ];
     }
 }

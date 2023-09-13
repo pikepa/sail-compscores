@@ -10,7 +10,7 @@ test('An authorised user can view their Organisations', function () {
     $client_A = Client::factory()->create();
     $client_B = Client::factory()->create();
 
-    $user->clients()->sync([$client_A->id , $client_B->id]);
+    $user->clients()->sync([$client_A->id, $client_B->id]);
 
     //Act & Assert
     loginAsUser($user)->assignRole('ClientAdmin');
@@ -25,7 +25,6 @@ test('An authorised user can view their Organisations', function () {
         ->assertSee($client_A->contact_name)
         ->assertSee($client_B->name)
         ->assertSee($client_A->contact_name);
-
 });
 
 test('A SuperAdmin user can view any Organisation', function () {

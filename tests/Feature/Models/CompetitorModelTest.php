@@ -30,3 +30,11 @@ it('has many competition_competitors', function () {
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Competitor::class);
 });
+
+    it('shows a competitor as an Individual or Team', function () {
+
+          //Arrange
+        $compet = Competitor::factory()->create(['is_team' => false]);
+        //Act & Assert
+        expect($compet->display_type)->toBe('Indiv');
+    });

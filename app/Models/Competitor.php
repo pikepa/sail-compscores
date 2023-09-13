@@ -12,6 +12,17 @@ class Competitor extends Model
 
     use HasFactory;
 
+    public function getDisplayTypeAttribute()
+    {
+        if ($this->is_team) {
+            $type = 'Team';
+        } else {
+            $type = 'Indiv';
+        }
+
+        return $type;
+    }
+
     public function getDisplayNameAttribute()
     {
         if ($this->is_team) {

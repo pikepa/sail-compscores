@@ -1,8 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Client;
-use App\Models\Competition;
+use App\Models\User;
 
 it('adds nominated users (SuperAdmin, Client Admin, Competition Manager, and two comp Users', function () {
     // Assert
@@ -30,26 +29,22 @@ it('adds two Clients owned by Client Adminb', function () {
     // Assert
     $this->assertDatabaseCount(Client::class, 2);
     $this->assertDatabaseHas(Client::class, ['name' => 'Urban Energy Southport', 'owner_id' => '2']);
-    $this->assertDatabaseHas(Client::class, ['name' => 'Urban Energy Miami' , 'owner_id' => '2']);
+    $this->assertDatabaseHas(Client::class, ['name' => 'Urban Energy Miami', 'owner_id' => '2']);
 });
-
 
     it('adds four competitions for each client each with 5 events', function () {
 
           //Arrange
-          Client::factory()->create();
-          $this->assertDatabaseCount(Competitions::class, 0);
-          $this->assertDatabaseCount(Events::class, 0);
-          $this->assertDatabaseCount(Competitors::class, 0);
-          
-          //Act
-          $this->artisan('db:seed CompetitionSeeder');
-          
-          //Assert
-          $this->assertDatabaseCount(Competitions::class, 4);
-          $this->assertDatabaseCount(Events::class, 20);
-          $this->assertDatabaseCount(Competitors::class, 40);
-          
+        Client::factory()->create();
+        $this->assertDatabaseCount(Competitions::class, 0);
+        $this->assertDatabaseCount(Events::class, 0);
+        $this->assertDatabaseCount(Competitors::class, 0);
 
-        });
+        //Act
+        $this->artisan('db:seed CompetitionSeeder');
 
+        //Assert
+        $this->assertDatabaseCount(Competitions::class, 4);
+        $this->assertDatabaseCount(Events::class, 20);
+        $this->assertDatabaseCount(Competitors::class, 40);
+    });

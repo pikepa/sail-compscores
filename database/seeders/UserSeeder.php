@@ -44,7 +44,5 @@ class UserSeeder extends Seeder
             'email' => 'compuser2@gmail.com',
             'password' => bcrypt('password'),
         ])->assignRole('CompUser');
-
-
     }
 }

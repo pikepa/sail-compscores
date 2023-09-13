@@ -7,7 +7,6 @@ use App\Models\User;
 
 uses()->group('models');
 
-
 it('has many users', function () {
     $client = Client::factory()
         ->has(User::factory()->count(2))
@@ -31,7 +30,6 @@ it('has many competitions', function () {
         ->toHaveCount(2)
         ->each->toBeInstanceOf(Competition::class);
 });
-
 
 it('has many invitees', function () {
     $client = Client::factory()

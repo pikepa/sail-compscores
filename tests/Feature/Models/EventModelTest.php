@@ -7,7 +7,7 @@ use App\Models\Event;
 uses()->group('models');
 
 it('belongs to a competition', function () {
-    $comp= Competition::factory()->create();
+    $comp = Competition::factory()->create();
     $event = Event::factory()->create(['competition_id' => $comp->id]);
     expect($event->competition)->toBeInstanceOf(Competition::class);
 });

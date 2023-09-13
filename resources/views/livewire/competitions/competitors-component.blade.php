@@ -5,6 +5,7 @@
 
         <div class="max-w-4xl mx-auto">
             <div class="mt-4 flex flex-col">
+                Total {{ $comp->competitors->count() }} Competitors
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle">
                         <div class="overflow-hidden shadow-sm ring-1 ring-black ring-opacity-5">
@@ -14,6 +15,7 @@
                                         <div>
                                             <x-table.header>Competitor Name</x-table.header>
                                             <x-table.header>Entry Status</x-table.header>
+                                            <x-table.header>Entry Type</x-table.header>
                                             <x-table.header>Created</x-table.header>
                                         </div>
                                         <div>
@@ -37,6 +39,7 @@
                                         <div>
                                             <x-table.detail>{{ $competitor->display_name }}</x-table.detail>
                                             <x-table.detail>{{ $competitor->pivot->entry_status }}</x-table.detail>
+                                            <x-table.detail>{{ $competitor->display_type }}</x-table.detail>
                                             <x-table.detail>{{ $competitor->pivot->created_at->format('D, jS M Y') }}</x-table.detail>
                                         </div>
                                         <div>

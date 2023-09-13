@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Client;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -30,7 +29,5 @@ class ClientSeeder extends Seeder
             'contact_phone' => '+61 498 020 843',
             'owner_id' => 2,
         ]);
-
-      
     }
 }
