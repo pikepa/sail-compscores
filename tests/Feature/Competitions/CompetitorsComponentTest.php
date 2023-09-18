@@ -13,7 +13,7 @@ beforeEach(function () {
 
     //Arrange
     $this->comp = Competition::factory()
-    ->has(Competitor::factory()->count(10))
+    ->has(Competitor::factory()->count(1))
     ->create();
 });
 

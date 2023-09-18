@@ -29,7 +29,7 @@ class ClientForm extends Component
         'name' => 'required|min:6|max:30',
         'contact_name' => 'required|min:6|Max:30',
         'contact_email' => 'required|email',
-        'contact_phone' => 'required|starts_with:+|min:13|max:16',
+        'contact_phone' => 'required|starts_with:+|min:9|max:16',
         'owner_id' => 'required|integer',
     ];
 

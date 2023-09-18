@@ -56,7 +56,7 @@ class Competition extends Model
     public function getDisplayNameAttribute()
     {
         $name = $this->comp_name;
-        if ($this->isPublic == 1) {
+        if ($this->isPublic === 1) {
             $name = $this->comp_name.' (P)';
         }
 

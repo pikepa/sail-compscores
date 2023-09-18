@@ -47,7 +47,7 @@ class ManageClients extends Component
         $this->toggleform();
     }
 
-    public function deleteClient($id)
+    public function deleteOrg($id)
     {
         $this->checkAuthority('delete-org');
 
